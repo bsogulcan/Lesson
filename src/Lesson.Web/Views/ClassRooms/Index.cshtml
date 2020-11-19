@@ -1,0 +1,147 @@
+﻿@model List<Lesson.Classes.Dto.ClassRoomFullOutPut>
+@using Abp.Web.Mvc.Extensions
+@using Lesson.Domain.StudentsOfClassRoom.Dto
+@{
+    ViewBag.Title = L("ClassRooms");
+    ViewBag.ActiveMenu = PageNames.ClassRooms;
+}
+@section scripts
+{
+    @Html.IncludeScript("~/Views/ClassRooms/Index.js")
+}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("ClassRooms")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>Refresh</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Branch</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var classRoom in Model)
+                        {
+                            <tr>
+                                <td>@classRoom.Name</td>
+                                <td>@classRoom.Branch</td>
+                                <td>@classRoom.Description</td>
+                                <td class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">menu</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+
+                                        <li><a href="@Url.Action("GetStudentByClassRoom", "Students",new GetStudentsOfClassRoomInput{ClassRoomId=classRoom.Id })" class="waves-effect waves-block class_room_students" data-classRoom-id="@classRoom.Id"><i class="material-icons">accessibility</i>@L("Students")</a></li>
+                                        <li><a href="@Url.Action("LessonsOfClassRoom", "Lessons",new Lesson.Domain.LessonsOfClassRoom.Dto.GetLessonOfClassRoomInput{ClassRoomId=classRoom.Id })" class="waves-effect waves-block class_room_students" data-classRoom-id="@classRoom.Id"><i class="material-icons">accessibility</i>@L("Lessons")</a></li>
+
+                                        @if (IsGranted(Lesson.Authorization.PermissionNames.ClassRoom_Update))
+                                        {
+                                            <li><a href="#" class="waves-effect waves-block edit-class_room" data-classRoom-id="@classRoom.Id" data-toggle="modal" data-target="#ClassRoomEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
+                                        }
+
+                                        @if (IsGranted(Lesson.Authorization.PermissionNames.ClassRoom_Delete))
+                                        {
+                                            <li><a href="#" class="waves-effect waves-block delete-class_room" data-role-id="@classRoom.Id" data-role-name="@classRoom.Name"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (IsGranted(Lesson.Authorization.PermissionNames.ClassRoom_Create))
+                {
+                    <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#ClassRoomCreateModal">
+                        <i class="material-icons">add</i>
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="ClassRoomCreateModal" tabindex="-1" role="dialog" aria-labelledby="ClassRoomCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span>@L("CreateNewClassRoom")</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form name="CreateClassRoomForm" role="form" novalidate class="form-validation">
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input id="classRoomName" type="text" name="Name" required class="validate form-control">
+                                    <label for="classRoomName" class="form-label">@L("ClassRoomLevel")</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <div class="form-line">
+                                        <input id="classRoomBranch" type="text" name="Branch" required class="validate form-control">
+                                        <label for="classRoomBranch" class="form-label">@L("ClassRoomBranch")</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+
+                                <div class="form-line">
+                                    @*<input id="classRoomDescription" type="text" name="Description" class="validate form-control">*@
+
+                                    <textarea id="classRoomDescription" class="validate form-control" name="Description"></textarea>
+                                    <label for="classRoomDescription" class="form-label">@L("ClassRoomDescription")</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="btnCreateClassRoom()" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
+                        <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
+                    </div> 
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
+
+
+<div class="modal fade" id="ClassRoomEditModal" tabindex="-1" role="dialog" aria-labelledby="ClassRoomEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>

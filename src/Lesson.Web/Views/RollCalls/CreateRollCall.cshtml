@@ -1,0 +1,79 @@
+﻿@model Lesson.Web.Models.RollCalls.RollCallViewModel
+@using Abp.Web.Mvc.Extensions
+@{
+    ViewBag.Title = L("CreateRollCall");
+}
+@section scripts
+{
+    @Html.IncludeScript("~/Views/RollCalls/CreateRollCall.js")
+}
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>
+                New Roll Call
+            </h2>
+            <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    @*<ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                        </ul>*@
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <form name="CreateNewRollCall" class="form-horizontal">
+                <div class="row clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="email_address_2">Class Room</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new { onchange = @"form.submit();", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="password_2">Lesson</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new { onchange = @"form.submit();", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="password_2">Session</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.DropDownListFor(model => model.Session, new SelectList(Model.SessionList), new { onchange = @"form.submit();", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row clearfix">
+                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                        <input type="button" class="btn btn-primary m-t-15 waves-effect" value="Make A RollCall" onclick="@("window.location.href='" + @Url.Action("InsertRollCall", "RollCalls",new Lesson.Web.Models.RollCalls.RollCallViewModel { ClassRoomId=Model.ClassRoomId,LessonId=Model.LessonId,Session=Model.Session}) + "'");" />
+
+                        @*<button type="button" class="btn btn-primary m-t-15 waves-effect makeARollCall">Make A RollCall</button>*@
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

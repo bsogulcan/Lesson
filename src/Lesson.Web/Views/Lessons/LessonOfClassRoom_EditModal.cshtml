@@ -1,0 +1,45 @@
+﻿@using Lesson.Web.Models.Common.Modals
+@model Lesson.Domain.LessonsOfClassRoom.Dto.UpdateLessonsOfClassRoomInput
+@{ Layout = null; }
+@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditClassRoom")))
+
+<div class="modal-body">
+    <form name="EditForm" role="form" novalidate class="form-validation">
+        <input type="hidden" name="Id" value="@Model.Id" />
+      
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        @Html.DropDownList("ClassRoomId", null, htmlAttributes: new { @class = "validate form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        @Html.DropDownList("LessonId", null, htmlAttributes: new { @class = "validate form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "validate form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+@Html.Partial("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+
+<script src="~/Views/Lessons/LessonOfClassRoom_EditModal.js"></script>

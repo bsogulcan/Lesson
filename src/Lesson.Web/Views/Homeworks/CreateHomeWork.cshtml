@@ -1,0 +1,83 @@
+﻿@model Lesson.Web.Models.Homeworks.HomeworkViewModel
+@using Abp.Web.Mvc.Extensions
+@using Lesson.Domain.Homeworks.Dto;
+@{
+    ViewBag.Title = L("CreateHomeWork");
+    ViewBag.ActiveMenu = PageNames.Homeworks;
+}
+@section scripts
+{
+    @Html.IncludeScript("~/Views/Homeworks/CreateHomework.js")
+}
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>
+                New Homework
+                <small></small>
+            </h2>
+            <ul class="header-dropdown m-r--5">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="body">
+            <form name="InsertHomeWork" class="form-horizontal">
+
+
+
+                <h2 class="card-inside-title">ClassRoom - Lesson - Delivery Date</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-4">
+                        <div class="form-group form-float form-group-lg">
+                            @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new { onchange = @"form.submit();", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group form-float form-group-lg">
+                            @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group form-float form-group-lg">
+                            @Html.EditorFor(model => model.Deadline, new { type = "datetime-local", id = "Deadline", @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="card-inside-title">Homework Details</h2>
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float form-group-lg">
+                            <div class="form-line">
+                                @Html.TextBox("Summary", Model.Summary, new { @class = "form-control", placeholder = "Summary" })
+                                @*<label class="form-label">Summary</label>*@
+                            </div>
+                            <div class="form-line">
+                                @Html.TextArea("Description", Model.Description, new { @class = "form-control no-resize", placeholder = "Description" })
+                                @*<textarea rows="4" class="form-control no-resize" placeholder="Homework Description"></textarea>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Create Homework</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

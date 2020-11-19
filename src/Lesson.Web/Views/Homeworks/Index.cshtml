@@ -1,0 +1,88 @@
+﻿@model List<Lesson.Domain.Homeworks.Dto.HomeworkFullOutPut>
+@using Abp.Web.Mvc.Extensions
+@using Lesson.Domain.Homeworks.Dto; 
+@{
+    ViewBag.Title = L("Homeworks");
+    ViewBag.ActiveMenu = PageNames.Homeworks;
+}
+@section scripts
+{
+    @Html.IncludeScript("~/Views/Homeworks/Index.js")
+}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("Homeworks")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="@Url.Action("CreateHomeWork", "Homeworks",new Lesson.Web.Models.Homeworks.HomeworkViewModel { Deadline=DateTime.Now})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("CreateHomework")</a></li>
+
+                            <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>Refresh</a></li>
+                        </ul>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Lesson</th>
+                            <th>Class Room</th>
+                            <th>Summary</th>
+                            <th>Delivery Date</th>
+                            <th>Teacher Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var rollCall in Model)
+                        {
+                            <tr>
+                                <td>@rollCall.Lesson.Name</td>
+                                <td>@rollCall.ClassRoom.Name @rollCall.ClassRoom.Branch</td>
+                                <td>@rollCall.Summary</td>
+                                <td>@rollCall.Deadline</td>
+                                <td>@rollCall.User.Name @rollCall.User.Surname</td>
+                                <td class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">menu</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="@Url.Action("HomeworkDetail", "HomeWorks",new GetHomeworkInput{ Id=rollCall.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Details")</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="ClassRoomCreateModal" tabindex="-1" role="dialog" aria-labelledby="ClassRoomCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ClassRoomEditModal" tabindex="-1" role="dialog" aria-labelledby="ClassRoomEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>

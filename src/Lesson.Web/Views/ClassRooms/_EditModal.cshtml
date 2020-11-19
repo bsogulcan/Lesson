@@ -1,0 +1,56 @@
+﻿@using Lesson.Web.Models.Common.Modals
+@model Lesson.Classes.Dto.EditClassRoomInput
+@{ Layout = null; }
+@Html.Partial("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditClassRoom")))
+
+<div class="modal-body">
+    <form name="ClassRoomEditForm" role="form" novalidate class="form-validation">
+        <input type="hidden" name="Id" value="@Model.Id" />
+          
+
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input id="classRoomName" type="text" name="Name" value="@Model.Name" required class="validate form-control">
+                        <label for="classRoomName" class="form-label">@L("ClassRoomLevel")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <input id="classRoomBranch" type="text" name="Branch" value="@Model.Branch" required class="validate form-control">
+                        <label for="classRoomBranch" class="form-label">@L("ClassRoomBranch")</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="form-group form-float">
+                    <div class="form-line">
+
+                        <textarea id="classRoomDesc" class="validate form-control" name="Description">@Model.Description</textarea>
+                        <label for="classRoomDesc" class="form-label">@L("ClassRoomDescription")</label>
+
+
+                        @*<input id="classRoomDesc" type="text" name="Description" value="@Model.Description" class="validate form-control">
+                        <label for="classRoomDesc" class="form-label">@L("ClassRoomDescription")</label>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+@Html.Partial("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+
+<script src="~/Views/ClassRooms/_EditModal.js"></script>

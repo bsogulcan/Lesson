@@ -1,0 +1,139 @@
+﻿@model Lesson.Domain.Exams.Exam.Dto.ExaminationsFullOutPut
+@using Abp.Web.Mvc.Extensions
+@{
+    ViewBag.Title = L("Exams");
+    ViewBag.ActiveMenu = PageNames.Exams;
+}
+@section scripts
+{
+    @Html.IncludeScript("~/Views/Exams/DetailExam.js")
+}
+
+<form name="DetailExam" id="@Model.Id">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @Model.Name
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="email_address_2">@L("ClassRoom")</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <a class="form-control">@Model.ClassRoom.Name @Model.ClassRoom.Branch</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="password_2">@L("Lesson")</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <a class="form-control">@Model.Lesson.Name | @Model.User.Name @Model.User.Surname </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="password_2">@L("Time")</label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <a class="form-control" id="lblTimeLimit">@Model.TimeLimit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix" id="divStartButton" style="display: block">
+                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                        <button type="button" onclick="StartExam()" class="btn btn-primary m-t-15 waves-effect">@L("StartExam")</button>
+                    </div>
+                </div>
+
+                <div class="panel-group" id="divQuestions" style="display: none ">
+                    @foreach (var question in Model.Questions)
+                    {
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" role="tab" id="headingOne_@(Model.Questions.IndexOf(question)+1)">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion_@(Model.Questions.IndexOf(question)+1)" href="#collapseOne_@(Model.Questions.IndexOf(question)+1)" aria-expanded="false" aria-controls="collapseOne_@(Model.Questions.IndexOf(question)+1)" class="collapsed">
+                                        Questions #@(Model.Questions.IndexOf(question)+1)
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne_@(Model.Questions.IndexOf(question)+1)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_@(Model.Questions.IndexOf(question)+1)" aria-expanded="false" style="height: 0px;">
+                                <div>
+                                    <div>
+                                        <div>
+                                            <div class="header">
+                                                <h2>
+                                                    <blockquote class="m-b-25">
+                                                        <p name="@("Question" + @Model.Questions.IndexOf(question))">@question.Question</p>
+                                                    </blockquote>
+
+                                                    @*@Html.TextArea("Question" + @Model.Questions.IndexOf(question), question.Question, new { @class = "form-control no-resize", placeholder = "Question?" })*@
+                                                </h2>
+                                            </div>
+                                            <div class="body">
+                                                @foreach (var answer in question.Answers)
+                                                {
+                                                    <div class="input-group ">
+                                                        <span class="form-line">
+                                                            <input name="@("group"+Model.Questions.IndexOf(question))" examId="@question.Examination.Id" questionId="@question.Id" answerId="@answer.Id"  type="radio" id="@("radio"+Model.Questions.IndexOf(question)+" "+question.Answers.IndexOf(answer))" class="radio-col-cyan">
+                                                            <label name="@("radioLbl"+Model.Questions.IndexOf(question)+" "+question.Answers.IndexOf(answer))" for="@("radio"+Model.Questions.IndexOf(question)+" "+question.Answers.IndexOf(answer))">@answer.Answer</label>
+
+
+                                                            @*<input type="checkbox" @(answer.Status == true ? "checked  " : "") class="filled-in" id="@("ig_checkbox"+Model.Questions.IndexOf(question)+" "+question.Answers.IndexOf(answer))" name="@("ig_checkbox"+Model.Questions.IndexOf(question)+" "+question.Answers.IndexOf(answer))">
+                                                                <label for="@("ig_checkbox"+Model.Questions.IndexOf(question)+" "+question.Answers.IndexOf(answer))"></label>*@
+                                                        </span>
+                                                        <!--<div class="form-line">-->
+                                                        @*  @Html.TextBox("Answer" + @Model.Questions.IndexOf(question) + " " + @question.Answers.IndexOf(answer), answer.Answer, new { @class = "form-control", placeholder = "Answer?" })*@
+                                                        <!--</div>-->
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                     
+
+                    <div class="row clearfix" id="divStartButton" style="display: block">
+                        <button type="button" onclick="FinishExam()" class="btn btn-primary m-t-15 waves-effect pull-right" style="margin:20px">
+                            <i class="material-icons">save</i>  Complate Exam
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</form>

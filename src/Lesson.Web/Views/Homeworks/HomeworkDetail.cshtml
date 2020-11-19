@@ -1,0 +1,65 @@
+﻿@model Lesson.Domain.Homeworks.Dto.HomeworkFullOutPut
+@using Abp.Web.Mvc.Extensions
+@using Lesson.Domain.Homeworks.Dto;
+@{
+    ViewBag.Title = L("HomeworkDetail");
+    ViewBag.ActiveMenu = PageNames.Homeworks;
+} 
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>
+                Homework Detail
+                <small></small>
+            </h2>
+           
+        </div>
+        <div class="body">
+
+
+
+                @*<h2 class="card-inside-title">ClassRoom - Lesson - Delivery Date</h2>*@
+                <div class="row clearfix">
+                    <div class="col-sm-4">
+                        <div class="form-group form-float form-group-lg">
+                            @Html.Label("Class", Model.ClassRoom.Name +" "+Model.ClassRoom.Branch, new { onchange = @"form.submit();", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group form-float form-group-lg">
+                            @Html.Label("Lesson",Model.Lesson.Name, new { onchange = @"form.submit();", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group form-float form-group-lg">
+                            @Html.Label("Deadline", Model.Deadline.ToString(), new { onchange = @"form.submit();", @class = "form-control" })
+
+                        </div>
+                    </div>
+                </div>
+
+                @*<h2 class="card-inside-title">Homework Details</h2>*@
+                <div class="row clearfix">
+                    <div class="col-sm-12">
+                        <div class="form-group form-float form-group-lg">
+                            <div class="form-line">
+                                @Html.Label("Summary", Model.Summary, new { @class = "form-control", placeholder = "Summary" })
+                                @*<label class="form-label">Summary</label>*@
+                            </div>
+                            <div class="form-line">
+                                @Html.Label("Description", Model.Description, new { @class = "form-control no-resize", placeholder = "Description" })
+                                @*<textarea rows="4" class="form-control no-resize" placeholder="Homework Description"></textarea>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="row clearfix">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Create Homework</button>
+                    </div>
+                </div>*@ 
+
+        </div>
+    </div>
+</div>
