@@ -279,6 +279,8 @@
     <Compile Include="Domain\RollCalls\IRollCallApplicationService.cs" />
     <Compile Include="Domain\RollCalls\RollCallApplicationService.cs" />
     <Compile Include="Domain\StudentsAnswersOfExam\Dto\CreateStudentsAnswerOfExamInput.cs" />
+    <Compile Include="Domain\StudentsAnswersOfExam\Dto\GetStudentsAnswerOfExamInput.cs" />
+    <Compile Include="Domain\StudentsAnswersOfExam\Dto\StudentsAnswerOfExamFullOutPut.cs" />
     <Compile Include="Domain\StudentsAnswersOfExam\IStudentsAnswerOfExamApplicationService.cs" />
     <Compile Include="Domain\StudentsAnswersOfExam\StudentsAnswerOfExamApplicationService.cs" />
     <Compile Include="Domain\StudentsOfClassRoom\Dto\CreateStudentOfClassRoomInput.cs" />

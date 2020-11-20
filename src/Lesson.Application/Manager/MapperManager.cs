@@ -15,6 +15,8 @@ using Lesson.Domain.RollCalls;
 using Lesson.Domain.RollCalls.Dto;
 using Lesson.Domain.RollCallsDetail;
 using Lesson.Domain.StudentOfClassRoom;
+using Lesson.Domain.StudentsAnswerOfExam;
+using Lesson.Domain.StudentsAnswersOfExam.Dto;
 using Lesson.Domain.StudentsOfClassRoom.Dto;
 using System;
 using System.Collections.Generic;
@@ -78,8 +80,11 @@ namespace Lesson.Manager
             cfg.CreateMap<Homework, GetHomeworkInput>();
             cfg.CreateMap<Homework, HomeworkFullOutPut>();
             
-            // Homework
+            // Exam
             cfg.CreateMap<Examination, ExaminationsFullOutPut>(); 
+            
+            // StudentsAnswerOfExam
+            cfg.CreateMap<StudentsAnswerOfExam, StudentsAnswerOfExamFullOutPut>(); 
 
         } 
     }

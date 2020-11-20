@@ -25,7 +25,7 @@ function StartExam(){
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
        
-        document.getElementById('lblTimeLimit').textContent = minutes + "Minute " + seconds + "Secons ";
+        document.getElementById('lblTimeLimit').textContent = minutes + "Dakika " + seconds + "Saniye ";
        
         if (distance < 0) {
           clearInterval(x); 
@@ -37,7 +37,7 @@ function StartExam(){
 function FinishExam(){  
 
     var studentsAnswerOfExam=[];
-
+    var examId=0;
     var quesntions = document.querySelectorAll("[name^=Question]"); 
     for (var objectIndex = 0; objectIndex < quesntions.length; objectIndex++) {
         var answerList = document.querySelectorAll("[name^=radioLbl"+objectIndex+"]"); 
@@ -50,6 +50,7 @@ function FinishExam(){
                     ExaminationQuestionId:boolList[index].getAttribute("questionId"),
                     ExaminationQuestionAnswerId:boolList[index].getAttribute("answerId")
                 } 
+                examId=boolList[index].getAttribute("examId");
                 studentsAnswerOfExam.push(answerDetail);
             }
         }
@@ -61,7 +62,7 @@ function FinishExam(){
     }).done(function(data) {
         if(data.success){
             abp.notify.success('Finished Exam.');
-            window.location.href = "/Home";
+            window.location.href = "/Exams/ResultOfExams/"+examId;
         }
     });
      

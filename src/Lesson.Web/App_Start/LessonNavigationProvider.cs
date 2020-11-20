@@ -29,24 +29,24 @@ namespace Lesson.Web
                         PageNames.Definitions,
                         L("Definitions"),
                         icon: "chrome_reader_mode"
-                 ).AddItem(
+                 ).AddItem(new MenuItemDefinition(
+                        PageNames.Tenants,
+                        L("Roles"),
+                        url: "Roles"
+                    )).AddItem(
                     new MenuItemDefinition(
                         PageNames.Users,
                         L("Users"),
                         url: "Users"
                     )).AddItem(new MenuItemDefinition(
-                        PageNames.ClassRooms,
-                        L("ClassRooms"),
-                        url: "ClassRooms"
-                 )).AddItem(new MenuItemDefinition(
                         PageNames.Lessons,
                         L("Lessons"),
                         url: "Lessons"
                     )).AddItem(new MenuItemDefinition(
-                        PageNames.Tenants,
-                        L("Tenants"),
-                        url: "Tenants"
-                    )));
+                        PageNames.ClassRooms,
+                        L("ClassRooms"),
+                        url: "ClassRooms"
+                 )));
             #endregion
             #region My Lessons
             context.Manager.MainMenu.AddItem(new MenuItemDefinition("MyLessons",
@@ -64,10 +64,18 @@ namespace Lesson.Web
             #endregion
             #region My Exams
             context.Manager.MainMenu.AddItem(new MenuItemDefinition("Exams",
+                        L("Exams"),
+                        icon: "extension",
+                        requiresAuthentication: true)
+                .AddItem(new MenuItemDefinition("Exams",
                         L("MyExams"),
                         url: "Exams",
-                        icon: "extension",
-                        requiresAuthentication: true));
+                        requiresAuthentication: true))
+                .AddItem(new MenuItemDefinition(
+                        PageNames.Tenants,
+                        L("ExamResults"),
+                        url: "Exams/ResultOfExams"
+                    )));
             #endregion
             #region Roll Call
             context.Manager.MainMenu.AddItem(new MenuItemDefinition(PageNames.RollCalls,
