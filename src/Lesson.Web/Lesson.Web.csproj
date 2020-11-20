@@ -3127,6 +3127,7 @@
     <Content Include="Views\Exams\Index.cshtml" />
     <Content Include="Views\Exams\CreateExam.cshtml" />
     <Content Include="Views\Exams\DetailExam.cshtml" />
+    <Content Include="Views\Exams\ResultOfExams.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

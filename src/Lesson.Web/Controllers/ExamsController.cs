@@ -42,13 +42,24 @@ namespace Lesson.Web.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var exams= await _examApplicationService.GetListAsync();
+            var exams = await _examApplicationService.GetListAsync();
+
+            foreach (var exam in exams)
+            {
+                exam.Approved = _studentsAnswerOfExamApplicationService.IsUserApprovedExam(
+                    new GetStudentsAnswerOfExamInput
+                    {
+                        UserId = User.Identity.GetUserId<int>(),
+                        ExaminationId = exam.Id
+                    });
+            }
+
             return View(exams);
         }
-        
+
         public ActionResult DetailExam(GetExaminationInput input)
         {
-            var exam= _examApplicationService.Get(input);
+            var exam = _examApplicationService.Get(input);
             foreach (var item in exam.Questions)
             {
                 var x = item.Answers;
@@ -72,10 +83,10 @@ namespace Lesson.Web.Controllers
                 var answers = new List<Domain.Exams.ExaminationQuestionAnswer>();
                 for (int z = 0; z < 2; z++)
                     answers.Add(new Domain.Exams.ExaminationQuestionAnswer { });
-                
-                model.Questions.Add(new Domain.Exams.ExaminationQuestion { Answers= answers });
+
+                model.Questions.Add(new Domain.Exams.ExaminationQuestion { Answers = answers });
             }
-              
+
             model.ClassRooms = classRooms;
             model.Lessons = lessonOfClassFullOutPut;
             var restul = JsonConvert.SerializeObject(model.Questions);
@@ -94,11 +105,43 @@ namespace Lesson.Web.Controllers
         {
             foreach (var answer in input)
             {
-                answer.UserId= (int)User.Identity.GetUserId<long>();
+                answer.UserId = (int)User.Identity.GetUserId<long>();
                 await _studentsAnswerOfExamApplicationService.CreateAsync(answer);
             }
 
             return Json(new { success = true });
+        }
+
+        public ActionResult ResultOfExams(GetExaminationInput input)
+        {
+            var exam = _examApplicationService.Get(input);
+            int correctAnswerCount = 0;
+            int wrongAnswerCount = 0;
+            exam.StudentsAnswers = _studentsAnswerOfExamApplicationService.GetAnswersByExam(
+                    new GetStudentsAnswerOfExamInput
+                    {
+                        UserId = (int)exam.User.Id,
+                        ExaminationId = exam.Id
+                    });
+
+            foreach (var item in exam.Questions)
+            {
+                var studentsAnswer = exam.StudentsAnswers.Where(m => m.ExaminationQuestion.Id == item.Id).FirstOrDefault();
+
+                if (studentsAnswer != null && studentsAnswer.ExaminationQuestionAnswer.Status)
+                    correctAnswerCount++;
+                else
+                    wrongAnswerCount++;
+
+                exam.CorrectAnswerCount = item.Answers.Where(m => m.Status == true).ToList().Count();
+                exam.WrongAnswerCount = item.Answers.Where(m => m.Status == false).ToList().Count();
+                exam.AnswerCount = item.Answers.Count();
+                var x = item.Answers;
+            }
+
+            exam.CorrectAnswerCount = correctAnswerCount;
+            exam.WrongAnswerCount = wrongAnswerCount;
+            return View("ResultOfExams", exam);
         }
     }
 }

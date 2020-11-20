@@ -11,5 +11,7 @@ namespace Lesson.Domain.StudentsAnswersOfExam
     public interface IStudentsAnswerOfExamApplicationService:IApplicationService
     {
         Task CreateAsync(CreateStudentsAnswerOfExamInput input);
+        List<StudentsAnswerOfExamFullOutPut> GetAnswersByExam(GetStudentsAnswerOfExamInput input);
+        bool IsUserApprovedExam(GetStudentsAnswerOfExamInput input);
     }
 }

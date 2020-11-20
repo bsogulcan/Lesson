@@ -45,5 +45,16 @@ namespace Lesson.Domain.StudentsAnswersOfExam
 
             studentsAnswerOfExam.Id = await _studentsAnswerOfExamRepository.InsertAndGetIdAsync(studentsAnswerOfExam);
         }
+
+        public List<StudentsAnswerOfExamFullOutPut> GetAnswersByExam(GetStudentsAnswerOfExamInput input)
+        {
+            var studentsAnswersOfExam = _studentsAnswerOfExamRepository.GetAllList().Where(x => x.User.Id == input.UserId && x.Examination.Id == input.ExaminationId).ToList();
+            return ObjectMapper.Map<List<StudentsAnswerOfExamFullOutPut>>(studentsAnswersOfExam);
+        }
+
+        public bool IsUserApprovedExam(GetStudentsAnswerOfExamInput input)
+        { 
+            return _studentsAnswerOfExamRepository.GetAllList().Where(x => x.User.Id == input.UserId && x.Examination.Id == input.ExaminationId).ToList().Count > 0 ? true : false;
+        }
     }
 }
