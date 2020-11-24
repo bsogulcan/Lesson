@@ -10,6 +10,8 @@ using Lesson.Domain.Homeworks.Dto;
 using Lesson.Domain.Lessons.Dto;
 using Lesson.Domain.LessonsOfClassRoom;
 using Lesson.Domain.LessonsOfClassRoom.Dto;
+using Lesson.Domain.News;
+using Lesson.Domain.News.Dto;
 using Lesson.Domain.RollCallDetails.Dto;
 using Lesson.Domain.RollCalls;
 using Lesson.Domain.RollCalls.Dto;
@@ -44,6 +46,7 @@ namespace Lesson.Manager
             cfg.CreateMap<StudentOfClassRoom, DeleteStudentOfClassRoomInput>();
             cfg.CreateMap<StudentOfClassRoom, GetStudentsOfClassRoomInput>();
             cfg.CreateMap<StudentOfClassRoom, StudentsOfClassRoomFullOutPut>();
+            cfg.CreateMap<StudentOfClassRoom, LessonOfClassRoomFullOutPut>();
             
             // Lesson
             cfg.CreateMap<Lesson.Domain.Lessons.Lesson, CreateLessonInput>();
@@ -58,6 +61,7 @@ namespace Lesson.Manager
             cfg.CreateMap<LessonOfClassRoom, DeleteLessonOfClassRoomInput>();
             cfg.CreateMap<LessonOfClassRoom, GetLessonOfClassRoomInput>();
             cfg.CreateMap<LessonOfClassRoom, LessonOfClassRoomFullOutPut>();
+            cfg.CreateMap<LessonOfClassRoom, LessonFullOutPut>();
 
             // RollCall
             cfg.CreateMap<RollCall, CreateRollCallInput>();
@@ -85,6 +89,9 @@ namespace Lesson.Manager
             
             // StudentsAnswerOfExam
             cfg.CreateMap<StudentsAnswerOfExam, StudentsAnswerOfExamFullOutPut>(); 
+            
+            // News
+            cfg.CreateMap<News, NewsFullOutPut>(); 
 
         } 
     }

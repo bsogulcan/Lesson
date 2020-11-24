@@ -13,13 +13,13 @@
     {
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="card">
-                <div class="header bg-@(students.RollCallType==Lesson.Domain.RollCallType.Here?"green":students.RollCallType==Lesson.Domain.RollCallType.NotHere?"red":"cyan")">
+                <div id="div @students.RollCallDetailId" class="header bg-@(students.RollCallType==Lesson.Domain.RollCallType.Here?"green":students.RollCallType==Lesson.Domain.RollCallType.NotHere?"red":"cyan")">
                     <h2>
                         @students.User.Name @students.User.Surname <small>@students.User.FullName</small>
                     </h2>
                 </div>
                 <div class="body">
-                    @Html.EnumDropDownListFor(x => students.RollCallType, htmlAttributes:new { @id = Model.ClassRoomId, onchange = "updateStudentStatus(this)",rollCallDetailId= students.RollCallDetailId,rollCallId= Model.RollCallId, @class = "form-control"})
+                    @Html.EnumDropDownListFor(x => students.RollCallType, htmlAttributes:new { @id = "rollCallTypeDropDown"+ students.RollCallDetailId, onchange = "updateStudentStatus(this)",rollCallDetailId= students.RollCallDetailId,rollCallId= Model.RollCallId, @class = "form-control"})
                     @*@Html.EnumDropDownListFor(x => students.RollCallType, optionLabel:"Select RollCallType", htmlAttributes:new { @id = Model.ClassRoomId, onchange = @"window.location.href = '" + @Url.Action("UpdateStudentRollCallStatus", "RollCalls", new Lesson.Web.Models.RollCalls.RollCallStudentViewModel { RollCallDetailId=students.RollCallDetailId,RollCallType= (Lesson.Domain.RollCallType)model, RollCallId=Model.RollCallId }) + "';", @class = "form-control"})*@
                 </div>
             </div>

@@ -16,9 +16,11 @@ namespace Lesson.Domain.LessonsOfClassRoom
         Task<List<LessonOfClassRoomFullOutPut>> GetListAsync();
         Task<LessonOfClassRoomFullOutPut> GetAsync(GetLessonOfClassRoomInput input);
         Task<LessonOfClassRoomFullOutPut> UpdateAsync(UpdateLessonsOfClassRoomInput input);
-        Task<List<LessonOfClassRoomFullOutPut>> GetListLessonsOfClassRoom(GetLessonOfClassRoomInput input);
-        Task<List<LessonOfClassRoomFullOutPut>> GetListLessonsOfClassRoomById(int classRoomId);
+        Task<List<LessonFullOutPut>> GetListLessonsOfClassRoom(GetLessonOfClassRoomInput input);
+        List<LessonOfClassRoomFullOutPut> GetListLessonsOfClassRoomBaseOutPut(GetLessonOfClassRoomInput input);
+        List<LessonOfClassRoomFullOutPut> GetListLessonsOfClassRoomById(int classRoomId);
         List<LessonOfClassRoomFullOutPut> GetTeacherLessonsOfClassRoom(GetLessonOfClassRoomInput input);
+        List<LessonOfClassRoomFullOutPut> GetStudentLessonsOfClassRoom(GetLessonOfClassRoomInput input);
         
     }
 }

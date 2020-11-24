@@ -726,6 +726,25 @@
     <Content Include="css\themes\theme-teal.min.css" />
     <Content Include="css\themes\theme-yellow.css" />
     <Content Include="css\themes\theme-yellow.min.css" />
+    <Content Include="dist\css\datepicker.css" />
+    <Content Include="dist\css\datepicker.min.css" />
+    <Content Include="dist\js\datepicker.js" />
+    <Content Include="dist\js\datepicker.min.js" />
+    <Content Include="dist\js\i18n\datepicker.cs.js" />
+    <Content Include="dist\js\i18n\datepicker.da.js" />
+    <Content Include="dist\js\i18n\datepicker.de.js" />
+    <Content Include="dist\js\i18n\datepicker.en.js" />
+    <Content Include="dist\js\i18n\datepicker.es.js" />
+    <Content Include="dist\js\i18n\datepicker.fi.js" />
+    <Content Include="dist\js\i18n\datepicker.fr.js" />
+    <Content Include="dist\js\i18n\datepicker.hu.js" />
+    <Content Include="dist\js\i18n\datepicker.nl.js" />
+    <Content Include="dist\js\i18n\datepicker.pl.js" />
+    <Content Include="dist\js\i18n\datepicker.pt-BR.js" />
+    <Content Include="dist\js\i18n\datepicker.pt.js" />
+    <Content Include="dist\js\i18n\datepicker.ro.js" />
+    <Content Include="dist\js\i18n\datepicker.sk.js" />
+    <Content Include="dist\js\i18n\datepicker.zh.js" />
     <Content Include="fonts\material-icons\materialicons.css" />
     <Content Include="fonts\roboto\roboto.css" />
     <Content Include="favicon.ico" />
@@ -2917,6 +2936,8 @@
     <Content Include="Views\Lessons\LessonOfClassRoom.js" />
     <Content Include="Views\Lessons\LessonOfClassRoom_EditModal.js" />
     <Content Include="Views\Lessons\_EditModal.js" />
+    <Content Include="Views\News\CreateNews.js" />
+    <Content Include="Views\News\DetailNews.js" />
     <Content Include="Views\Roles\Index.js" />
     <Content Include="Views\Roles\_EditRoleModal.js" />
     <Content Include="Views\RollCalls\CreateRollCall.js" />
@@ -2949,6 +2970,7 @@
     <Compile Include="Controllers\ExamsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeworksController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\RollCallsController.cs" />
@@ -3128,6 +3150,9 @@
     <Content Include="Views\Exams\CreateExam.cshtml" />
     <Content Include="Views\Exams\DetailExam.cshtml" />
     <Content Include="Views\Exams\ResultOfExams.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\CreateNews.cshtml" />
+    <Content Include="Views\News\DetailNews.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

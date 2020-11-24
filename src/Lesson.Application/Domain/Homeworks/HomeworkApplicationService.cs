@@ -113,7 +113,7 @@ namespace Lesson.Domain.Homeworks
 
             return ObjectMapper.Map<HomeworkFullOutPut>(homework);
         }
-        public async Task Subscribe_Homeworks(int userId)
+        public async Task Subscribe_Homeworks(long userId)
         {
             await _notificationSubscriptionManager.SubscribeAsync(new UserIdentifier(null, userId), "HomeworkInfo");
         }

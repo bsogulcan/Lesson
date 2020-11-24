@@ -12,18 +12,23 @@ namespace Lesson.Authorization
             context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
 
-            context.CreatePermission(PermissionNames.Category_Categories, L(PermissionNames.Category_Categories));
-            context.CreatePermission(PermissionNames.Category_AddCategory, L(PermissionNames.Category_AddCategory));
-            context.CreatePermission(PermissionNames.Category_UpdateCategory, L(PermissionNames.Category_UpdateCategory));
-            context.CreatePermission(PermissionNames.Category_DeleteCategory, L(PermissionNames.Category_DeleteCategory));
+            //NavigationBar
+            context.CreatePermission(PermissionNames.Pages_Definitions, L(PermissionNames.Pages_Definitions));
+            context.CreatePermission(PermissionNames.Pages_Lessons, L(PermissionNames.Pages_Lessons));
+            context.CreatePermission(PermissionNames.Pages_HomeWorks, L(PermissionNames.Pages_HomeWorks));
+            context.CreatePermission(PermissionNames.Pages_HomeWorks_Create, L(PermissionNames.Pages_HomeWorks_Create));
+
+            context.CreatePermission(PermissionNames.Pages_Exams, L(PermissionNames.Pages_Exams));
+            context.CreatePermission(PermissionNames.Pages_Exams_Create, L(PermissionNames.Pages_Exams_Create));
+            context.CreatePermission(PermissionNames.Pages_RollCalls, L(PermissionNames.Pages_RollCalls));
 
             //ClassRoom
-            context.CreatePermission(PermissionNames.ClassRoom, L("Permission_ClassRoom"));
-            context.CreatePermission(PermissionNames.ClassRoom_Create, L("Permission_ClassRoom_Create"));
-            context.CreatePermission(PermissionNames.ClassRoom_Get, L("Permission_ClassRoom_Get"));
-            context.CreatePermission(PermissionNames.ClassRoom_GetList, L("Permission_ClassRoom_GetList"));
-            context.CreatePermission(PermissionNames.ClassRoom_Update, L("Permission_ClassRoom_Update"));
-            context.CreatePermission(PermissionNames.ClassRoom_Delete, L("Permission_ClassRoom_Delete"));
+            //context.CreatePermission(PermissionNames.ClassRoom, L("Permission_ClassRoom"));
+            //context.CreatePermission(PermissionNames.ClassRoom_Create, L("Permission_ClassRoom_Create"));
+            //context.CreatePermission(PermissionNames.ClassRoom_Get, L("Permission_ClassRoom_Get"));
+            //context.CreatePermission(PermissionNames.ClassRoom_GetList, L("Permission_ClassRoom_GetList"));
+            //context.CreatePermission(PermissionNames.ClassRoom_Update, L("Permission_ClassRoom_Update"));
+            //context.CreatePermission(PermissionNames.ClassRoom_Delete, L("Permission_ClassRoom_Delete"));
 
         }
 

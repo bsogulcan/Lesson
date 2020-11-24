@@ -241,6 +241,46 @@
     <Compile Include="Migrations\202011181311530_AddedStudentsAnswerOfExamEntity.designer.cs">
       <DependentUpon>202011181311530_AddedStudentsAnswerOfExamEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011230628545_AddedStudentsAnswersOfExamEntitiesOnExamEntities.cs" />
+    <Compile Include="Migrations\202011230628545_AddedStudentsAnswersOfExamEntitiesOnExamEntities.designer.cs">
+      <DependentUpon>202011230628545_AddedStudentsAnswersOfExamEntitiesOnExamEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011230730510_AddedForeignKeyToLessonOfClassRoom.cs" />
+    <Compile Include="Migrations\202011230730510_AddedForeignKeyToLessonOfClassRoom.designer.cs">
+      <DependentUpon>202011230730510_AddedForeignKeyToLessonOfClassRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011230757560_AddedUserIdForeignKeyOnStudentOfClassRoomEntity.cs" />
+    <Compile Include="Migrations\202011230757560_AddedUserIdForeignKeyOnStudentOfClassRoomEntity.designer.cs">
+      <DependentUpon>202011230757560_AddedUserIdForeignKeyOnStudentOfClassRoomEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011230830393_LessonOfClassRoomAddedForeingKeyClassRoomId.cs" />
+    <Compile Include="Migrations\202011230830393_LessonOfClassRoomAddedForeingKeyClassRoomId.designer.cs">
+      <DependentUpon>202011230830393_LessonOfClassRoomAddedForeingKeyClassRoomId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011230843291_AddedStudentsAnswerOfExamsForeignKeys.cs" />
+    <Compile Include="Migrations\202011230843291_AddedStudentsAnswerOfExamsForeignKeys.designer.cs">
+      <DependentUpon>202011230843291_AddedStudentsAnswerOfExamsForeignKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011230857094_ChangedEntityConnectionName.cs" />
+    <Compile Include="Migrations\202011230857094_ChangedEntityConnectionName.designer.cs">
+      <DependentUpon>202011230857094_ChangedEntityConnectionName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011230935441_UpdatedExaminationEntity.cs" />
+    <Compile Include="Migrations\202011230935441_UpdatedExaminationEntity.designer.cs">
+      <DependentUpon>202011230935441_UpdatedExaminationEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011230945010_UpdatedExaminationEntity1.cs" />
+    <Compile Include="Migrations\202011230945010_UpdatedExaminationEntity1.designer.cs">
+      <DependentUpon>202011230945010_UpdatedExaminationEntity1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011230950511_UpdatedExaminationEntity2.cs" />
+    <Compile Include="Migrations\202011230950511_UpdatedExaminationEntity2.designer.cs">
+      <DependentUpon>202011230950511_UpdatedExaminationEntity2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011240018072_CreatedNewsEntitiy.cs" />
+    <Compile Include="Migrations\202011240018072_CreatedNewsEntitiy.designer.cs">
+      <DependentUpon>202011240018072_CreatedNewsEntitiy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedData\DefaultEditionsCreator.cs" />
@@ -271,6 +311,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011181311530_AddedStudentsAnswerOfExamEntity.resx">
       <DependentUpon>202011181311530_AddedStudentsAnswerOfExamEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230628545_AddedStudentsAnswersOfExamEntitiesOnExamEntities.resx">
+      <DependentUpon>202011230628545_AddedStudentsAnswersOfExamEntitiesOnExamEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230730510_AddedForeignKeyToLessonOfClassRoom.resx">
+      <DependentUpon>202011230730510_AddedForeignKeyToLessonOfClassRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230757560_AddedUserIdForeignKeyOnStudentOfClassRoomEntity.resx">
+      <DependentUpon>202011230757560_AddedUserIdForeignKeyOnStudentOfClassRoomEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230830393_LessonOfClassRoomAddedForeingKeyClassRoomId.resx">
+      <DependentUpon>202011230830393_LessonOfClassRoomAddedForeingKeyClassRoomId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230843291_AddedStudentsAnswerOfExamsForeignKeys.resx">
+      <DependentUpon>202011230843291_AddedStudentsAnswerOfExamsForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230857094_ChangedEntityConnectionName.resx">
+      <DependentUpon>202011230857094_ChangedEntityConnectionName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230935441_UpdatedExaminationEntity.resx">
+      <DependentUpon>202011230935441_UpdatedExaminationEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230945010_UpdatedExaminationEntity1.resx">
+      <DependentUpon>202011230945010_UpdatedExaminationEntity1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011230950511_UpdatedExaminationEntity2.resx">
+      <DependentUpon>202011230950511_UpdatedExaminationEntity2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011240018072_CreatedNewsEntitiy.resx">
+      <DependentUpon>202011240018072_CreatedNewsEntitiy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

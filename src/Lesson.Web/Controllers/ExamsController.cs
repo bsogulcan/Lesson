@@ -1,9 +1,12 @@
-﻿using Lesson.Classes;
+﻿using Abp.Authorization;
+using Lesson.Authorization;
+using Lesson.Classes;
 using Lesson.Domain.Exams;
 using Lesson.Domain.Exams.Exam;
 using Lesson.Domain.Exams.Exam.Dto;
 using Lesson.Domain.Lessons.Dto;
 using Lesson.Domain.LessonsOfClassRoom;
+using Lesson.Domain.LessonsOfClassRoom.Dto;
 using Lesson.Domain.StudentsAnswersOfExam;
 using Lesson.Domain.StudentsAnswersOfExam.Dto;
 using Lesson.Manager;
@@ -40,6 +43,7 @@ namespace Lesson.Web.Controllers
             _studentsAnswerOfExamApplicationService = studentsAnswerOfExamApplicationService;
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Exams)]
         public async Task<ActionResult> Index()
         {
             var exams = await _examApplicationService.GetListAsync();
@@ -57,9 +61,9 @@ namespace Lesson.Web.Controllers
             return View(exams);
         }
 
-        public ActionResult DetailExam(GetExaminationInput input)
+        public async Task<ActionResult> DetailExam(GetExaminationInput input)
         {
-            var exam = _examApplicationService.Get(input);
+            var exam = await _examApplicationService.GetAsync(input);
             foreach (var item in exam.Questions)
             {
                 var x = item.Answers;
@@ -67,15 +71,19 @@ namespace Lesson.Web.Controllers
             return View("DetailExam", exam);
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Exams_Create)]
         public async Task<ActionResult> CreateExam(ExamViewModel model)
         {
-            var classRooms = await _classRoomAppService.GetListAsync();
+            model.ClassRooms = await _classRoomAppService.GetListAsync();
             if (model.ClassRoomId == 0)
-                model.ClassRoomId = classRooms.FirstOrDefault().Id;
+                model.ClassRoomId = model.ClassRooms.FirstOrDefault().Id;
 
-            List<LessonFullOutPut> lessonOfClassFullOutPut = new List<LessonFullOutPut>();
-            var lessonsOfClass = await _lessonOfClassRoomApplicationService.GetListLessonsOfClassRoom(new Domain.LessonsOfClassRoom.Dto.GetLessonOfClassRoomInput { ClassRoomId = model.ClassRoomId });
-            lessonsOfClass.ForEach(x => lessonOfClassFullOutPut.Add(new LessonFullOutPut { Name = x.Lesson.Name, Id = x.Lesson.Id }));
+            var lessonOfClassRoomInput = new GetLessonOfClassRoomInput
+            {
+                ClassRoomId = model.ClassRoomId
+            };
+
+            model.Lessons = await _lessonOfClassRoomApplicationService.GetListLessonsOfClassRoom(lessonOfClassRoomInput);
 
             model.Questions = new List<Domain.Exams.ExaminationQuestion>();
             for (int i = 0; i < 10; i++)
@@ -86,61 +94,42 @@ namespace Lesson.Web.Controllers
 
                 model.Questions.Add(new Domain.Exams.ExaminationQuestion { Answers = answers });
             }
-
-            model.ClassRooms = classRooms;
-            model.Lessons = lessonOfClassFullOutPut;
-            var restul = JsonConvert.SerializeObject(model.Questions);
-
+              
             return View("CreateExam", model);
         }
 
+        [AbpAuthorize(PermissionNames.Pages_Exams_Create)]
         public async Task<JsonResult> InsertExamAsync(CreateExamInput model)
         {
-            model.UserId = (int)User.Identity.GetUserId<long>();
+            model.UserId = User.Identity.GetUserId<long>();
             await _examApplicationService.CreateAsync(model);
             return Json(new { success = true });
         }
 
         public async Task<JsonResult> InsertStudentsAnswer(List<CreateStudentsAnswerOfExamInput> input)
-        {
+        { 
             foreach (var answer in input)
             {
-                answer.UserId = (int)User.Identity.GetUserId<long>();
+                answer.UserId = User.Identity.GetUserId<long>();
                 await _studentsAnswerOfExamApplicationService.CreateAsync(answer);
             }
 
             return Json(new { success = true });
         }
 
-        public ActionResult ResultOfExams(GetExaminationInput input)
+        public async Task<ActionResult> ResultOfExams(GetExaminationInput input)
         {
-            var exam = _examApplicationService.Get(input);
-            int correctAnswerCount = 0;
-            int wrongAnswerCount = 0;
-            exam.StudentsAnswers = _studentsAnswerOfExamApplicationService.GetAnswersByExam(
-                    new GetStudentsAnswerOfExamInput
-                    {
-                        UserId = (int)exam.User.Id,
-                        ExaminationId = exam.Id
-                    });
+            var exam = await _examApplicationService.GetAsync(input);
 
-            foreach (var item in exam.Questions)
+            foreach (var question in exam.Questions)
             {
-                var studentsAnswer = exam.StudentsAnswers.Where(m => m.ExaminationQuestion.Id == item.Id).FirstOrDefault();
-
-                if (studentsAnswer != null && studentsAnswer.ExaminationQuestionAnswer.Status)
-                    correctAnswerCount++;
-                else
-                    wrongAnswerCount++;
-
-                exam.CorrectAnswerCount = item.Answers.Where(m => m.Status == true).ToList().Count();
-                exam.WrongAnswerCount = item.Answers.Where(m => m.Status == false).ToList().Count();
-                exam.AnswerCount = item.Answers.Count();
-                var x = item.Answers;
+                var x = question.Answers;
             }
 
-            exam.CorrectAnswerCount = correctAnswerCount;
-            exam.WrongAnswerCount = wrongAnswerCount;
+            exam.CorrectAnswerCount = exam.StudentsAnswers.Count(s=>s.ExaminationQuestionAnswer.Status);
+            exam.WrongAnswerCount = exam.StudentsAnswers.Count(s => !s.ExaminationQuestionAnswer.Status);
+            exam.AnswerCount = exam.StudentsAnswers.Count(); 
+
             return View("ResultOfExams", exam);
         }
     }

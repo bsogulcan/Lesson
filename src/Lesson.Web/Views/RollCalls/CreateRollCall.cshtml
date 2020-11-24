@@ -37,7 +37,7 @@
                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                         <div class="form-group">
                             <div class="form-line">
-                                @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new { onchange = @"form.submit();", @class = "form-control" })
+                                @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new { @class = "form-control" ,id= "classRoomDropDown" })
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                         <div class="form-group">
                             <div class="form-line">
-                                @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new { onchange = @"form.submit();", @class = "form-control" })
+                                @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new {  @class = "form-control", id = "lessonsDropDown" })
                             </div>
                         </div>
                     </div>
@@ -61,16 +61,16 @@
                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                         <div class="form-group">
                             <div class="form-line">
-                                @Html.DropDownListFor(model => model.Session, new SelectList(Model.SessionList), new { onchange = @"form.submit();", @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Session, new SelectList(Model.SessionList), new { @class = "form-control",id="sessionDropDown" })
                             </div>
                         </div>
                     </div>
                 </div> 
                 <div class="row clearfix">
                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                        <input type="button" class="btn btn-primary m-t-15 waves-effect" value="Make A RollCall" onclick="@("window.location.href='" + @Url.Action("InsertRollCall", "RollCalls",new Lesson.Web.Models.RollCalls.RollCallViewModel { ClassRoomId=Model.ClassRoomId,LessonId=Model.LessonId,Session=Model.Session}) + "'");" />
+                        @*<input type="button" class="btn btn-primary m-t-15 waves-effect" value="Make A RollCall" onclick="@("window.location.href='" + @Url.Action("InsertRollCall", "RollCalls",new Lesson.Web.Models.RollCalls.RollCallViewModel { ClassRoomId=Model.ClassRoomId,LessonId=Model.LessonId,Session=Model.Session}) + "'");" />*@
 
-                        @*<button type="button" class="btn btn-primary m-t-15 waves-effect makeARollCall">Make A RollCall</button>*@
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect makeARollCall">Make A RollCall</button>
                     </div>
                 </div>
             </form>

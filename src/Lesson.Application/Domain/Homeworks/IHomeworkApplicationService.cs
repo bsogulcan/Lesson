@@ -17,7 +17,7 @@ namespace Lesson.Domain.Homeworks
         List<HomeworkFullOutPut> GetListByStudents(GetHomeworkInput input);
         Task<HomeworkFullOutPut> GetAsync(GetHomeworkInput input);
         Task<HomeworkFullOutPut> UpdateAsync(UpdateHomeworkInput input);
-        Task Subscribe_Homeworks(int userId);
+        Task Subscribe_Homeworks(long userId);
         Task Publish_Homeworks(UserIdentifier targetUserId);
     }
 }

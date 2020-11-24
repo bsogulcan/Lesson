@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Abp.Auditing;
 using Abp.Domain.Entities.Auditing;
 using Lesson.Authorization.Users;
+using Lesson.Domain.StudentOfClassRoom;
 
 namespace Lesson.Classes
 {
@@ -20,6 +21,6 @@ namespace Lesson.Classes
 
         [MaxLength(120)]
         public string Description { get; set; }
-         
+
     }
 }

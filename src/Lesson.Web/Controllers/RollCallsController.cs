@@ -67,18 +67,18 @@ namespace Lesson.Web.Controllers
                 model.ClassRoomId = classRooms.FirstOrDefault().Id;
 
             var lessonsOfClass = await _lessonOfClassRoomApplicationService.GetListLessonsOfClassRoom(new Domain.LessonsOfClassRoom.Dto.GetLessonOfClassRoomInput { ClassRoomId = model.ClassRoomId });
-            lessonsOfClass.ForEach(x => lessonOfClassFullOutPut.Add(new LessonFullOutPut { Name = x.Lesson.Name, Id = x.Lesson.Id }));
+            //lessonsOfClass.ForEach(x => lessonOfClassFullOutPut.Add(new LessonFullOutPut { Name = x.Lesson.Name, Id = x.Lesson.Id }));
 
             model.ClassRooms = classRooms;
-            model.Lessons = lessonOfClassFullOutPut;
+            model.Lessons = lessonsOfClass;
 
             if (model.LessonId == 0 && model.Lessons.Count > 0)
-                model.LessonId = lessonOfClassFullOutPut.FirstOrDefault().Id;
+                model.LessonId = lessonsOfClass.FirstOrDefault().Id;
 
             return View("CreateRollCall", model);
         }
 
-        public async Task<ActionResult> InsertRollCall(RollCallViewModel model)
+        public async Task<JsonResult> InsertRollCall(RollCallViewModel model)
         {
             var rollCall = await _rollCallApplicationService.CreateAsync(
                 new CreateRollCallInput
@@ -120,7 +120,7 @@ namespace Lesson.Web.Controllers
                     }) ;
             }
 
-            return RedirectToAction("Students", new RollCallViewModel { RollCallId = model.RollCallId });
+            return Json(new { RollCallId = model.RollCallId });
         }
 
         public async Task<ActionResult> Students(RollCallViewModel model)

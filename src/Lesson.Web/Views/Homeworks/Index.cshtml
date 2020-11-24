@@ -1,6 +1,7 @@
 ﻿@model List<Lesson.Domain.Homeworks.Dto.HomeworkFullOutPut>
 @using Abp.Web.Mvc.Extensions
-@using Lesson.Domain.Homeworks.Dto; 
+@using Lesson.Domain.Homeworks.Dto;
+@using Lesson.Authorization;
 @{
     ViewBag.Title = L("Homeworks");
     ViewBag.ActiveMenu = PageNames.Homeworks;
@@ -22,8 +23,10 @@
                             <i class="material-icons">more_vert</i>
                         </a>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="@Url.Action("CreateHomeWork", "Homeworks",new Lesson.Web.Models.Homeworks.HomeworkViewModel { Deadline=DateTime.Now})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("CreateHomework")</a></li>
-
+                            @if (IsGranted(PermissionNames.Pages_HomeWorks_Create))
+                            {
+                                <li><a href="@Url.Action("CreateHomeWork", "Homeworks",new Lesson.Web.Models.Homeworks.HomeworkViewModel { Deadline=DateTime.Now})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("CreateHomework")</a></li>
+                            }
                             <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>Refresh</a></li>
                         </ul>
 

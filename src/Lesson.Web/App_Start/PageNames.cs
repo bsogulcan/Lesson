@@ -14,5 +14,6 @@ namespace Lesson.Web
         public const string RollCalls = "RollCalls";
         public const string Homeworks = "Homeworks";
         public const string Exams = "Exams";
+        public const string News = "News";
     }
 }

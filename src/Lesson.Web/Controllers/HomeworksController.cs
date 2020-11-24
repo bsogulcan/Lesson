@@ -1,4 +1,6 @@
-﻿using Lesson.Classes;
+﻿using Abp.Authorization;
+using Lesson.Authorization;
+using Lesson.Classes;
 using Lesson.Domain.Homeworks;
 using Lesson.Domain.Homeworks.Dto;
 using Lesson.Domain.Lessons.Dto;
@@ -32,17 +34,20 @@ namespace Lesson.Web.Controllers
         // GET: Homeworks
         public async Task<ActionResult> Index()
         {
-            await _homeworkApplicationService.Subscribe_Homeworks((int)User.Identity.GetUserId<long>());
+            await _homeworkApplicationService.Subscribe_Homeworks(User.Identity.GetUserId<long>());
 
-            var homeworks = _homeworkApplicationService.GetListByStudents(
-                new GetHomeworkInput { 
-                    User = new Users.Dto.UserPartOutput { 
-                        Id = User.Identity.GetUserId<long>() 
-                    } 
-                });
+            //var homeworks = _homeworkApplicationService.GetListByStudents(
+            //    new GetHomeworkInput { 
+            //        User = new Users.Dto.UserPartOutput { 
+            //            Id = User.Identity.GetUserId<long>() 
+            //        } 
+            //    });
+
+            var homeworks = await _homeworkApplicationService.GetListAsync();
             return View(homeworks);
         }
 
+        [AbpAuthorize(PermissionNames.Pages_HomeWorks_Create)]
         public async Task<ActionResult> CreateHomeWork(HomeworkViewModel model)
         {
             var lessonOfClassFullOutPut = new List<LessonFullOutPut>();
@@ -57,9 +62,9 @@ namespace Lesson.Web.Controllers
                 model.ClassRoomId = classRooms.FirstOrDefault().Id;
 
             var lessonsOfClass = await _lessonOfClassRoomApplicationService.GetListLessonsOfClassRoom(new Domain.LessonsOfClassRoom.Dto.GetLessonOfClassRoomInput { ClassRoomId = model.ClassRoomId });
-            lessonsOfClass.ForEach(x => lessonOfClassFullOutPut.Add(new LessonFullOutPut { Name = x.Lesson.Name, Id = x.Lesson.Id }));
+            //lessonsOfClass.ForEach(x => lessonOfClassFullOutPut.Add(new LessonFullOutPut { Name = x.Lesson.Name, Id = x.Lesson.Id }));
             model.ClassRooms = classRooms;
-            model.Lessons = lessonOfClassFullOutPut;
+            model.Lessons = lessonsOfClass;
 
             return View("CreateHomeWork", model);
         }
@@ -70,7 +75,7 @@ namespace Lesson.Web.Controllers
             return View("HomeworkDetail", homework);
         }
 
-
+        //[AbpAuthorize(PermissionNames.Pages_HomeWorks_Create)]
         public async Task<JsonResult> InsertHomeWorkAsync(HomeworkViewModel model)
         {
             var homework = new CreateHomeworkInput

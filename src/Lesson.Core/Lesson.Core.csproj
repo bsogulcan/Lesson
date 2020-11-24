@@ -225,6 +225,7 @@
     <Compile Include="Domain\Homeworks\Homework.cs" />
     <Compile Include="Domain\LessonsOfClassRoom\LessonOfClassRoom.cs" />
     <Compile Include="Domain\Lessons\Lesson.cs" />
+    <Compile Include="Domain\News\News.cs" />
     <Compile Include="Domain\RollCallsDetail\RollCallDetail.cs" />
     <Compile Include="Domain\RollCalls\RollCall.cs" />
     <Compile Include="Domain\Homeworks\SentHomeworkInfoNotificationData .cs" />

@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Lesson.Domain.LessonsOfClassRoom.Dto;
 using Lesson.Domain.StudentsOfClassRoom.Dto;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Lesson.Domain.StudentsOfClassRoom
         Task<List<StudentsOfClassRoomFullOutPut>> GetListAsync();
         List<StudentsOfClassRoomFullOutPut> Get(GetStudentsOfClassRoomInput input);
         Task<List<StudentsOfClassRoomFullOutPut>> GetAsync(GetStudentsOfClassRoomInput input);
-        Task<StudentsOfClassRoomFullOutPut> UpdateAsync(UpdateStudentOfClassRoomInput input);
+        List<StudentsOfClassRoomFullOutPut> GetStudentsLessons(GetLessonOfClassRoomInput input);
+
     }
 }

@@ -1,0 +1,58 @@
+﻿@model List<Lesson.Domain.News.Dto.NewsFullOutPut>
+@using Abp.Web.Mvc.Extensions
+@{
+    ViewBag.Title = L("News");
+    ViewBag.ActiveMenu = PageNames.News;
+}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("News")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="@Url.Action("CreateNews", "News",new Lesson.Domain.News.Dto.CreateNewsInput { })" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("CreateNews")</a></li>
+
+                            <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>Refresh</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr >
+                            <th>Summary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var news in Model)
+                        {
+                            <tr>
+                                <td style="width:90%">@news.Summary</td>
+                                <td class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">menu</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="@Url.Action("DetailNews", "News",new Lesson.Domain.News.Dto.GetNewsInput{ Id=news.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Details")</a></li>
+
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+

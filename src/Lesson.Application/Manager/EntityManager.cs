@@ -70,9 +70,14 @@ namespace Lesson.Manager
             return lesson;
         }
 
-        public async Task<User> GetUserById(int userId)
+        public async Task<User> GetUserById(long userId)
         {
             return await _userManager.GetUserByIdAsync(userId);
+        }
+
+        public User GetUserByIdSync(long userId)
+        {
+            return _userManager.GetUserById(userId);
         }
     }
 }

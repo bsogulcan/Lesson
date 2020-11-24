@@ -10,6 +10,11 @@
     @Html.IncludeScript("~/Views/Exams/CreateExam.js")
 }
 
+<link href="~/dist/css/datepicker.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="~/dist/js/datepicker.js"></script>
+<script src="~/dist/js/i18n/datepicker.en.js"></script>
+
 <form name="CreateExam">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card" style="height:100vh">
@@ -27,38 +32,55 @@
                         <div class="row clearfix">
 
                             <div class="col-sm-6">
-                                <div class="form-float">
-                                    <input id="examName" type="text" name="Name" value="@Model.Name" placeholder="Enter Exam Summary" class="form-control">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="examName" type="text" name="Name" value="@Model.Name" placeholder="Summary" class="form-control">
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
-                                <div class="form-float">
-                                    <input id="timeLimit" type="text" name="timeLimit" value="@Model.TimeLimit.ToString()" placeholder="Time Limit" class="form-control">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="timeLimit" type="text" name="timeLimit" value="@Model.TimeLimit.ToString()" placeholder="Time Limit" class="form-control">
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
-                                <div class="form-group form-float ">
-                                    @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new { @class = "form-control", id = "classRoomDropDown" })
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new { @class = "form-control", id = "classRoomDropDown" })
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="form-group form-float ">
-                                    @Html.DropDownList("lessonsDropDown", new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control", id = "lessonsDropDown" })
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        @Html.DropDownList("lessonsDropDown", new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control", id = "lessonsDropDown" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <p>Start Date</p>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type='text' id="StartDate" class='datepicker-here timepicker form-control' value="@Model.StartDate" data-timepicker="true" data-language='en' />
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="form-group form-float ">
-                                    <p>Start Date</p>
-                                    @Html.TextBoxFor(model => model.StartDate, new { type = "datetime-local", id = "StartDate", @class = "form-control" })
+                                <p>End Date</p>
+
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type='text' id="EndDate" class='datepicker-here timepicker form-control' value="@Model.EndDate" data-timepicker="true" data-language='en' />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group form-float ">
-                                    <p>End Date</p>
-                                    @Html.TextBoxFor(model => model.EndDate, new { type = "datetime-local", id = "EndDate", @class = "form-control" })
-                                </div>
+                                @*@Html.TextBoxFor(model => model.EndDate, new { type = "datetime-local", id = "EndDate", @class = "form-control" })*@
+
+                                @*  <div class="datepicker-here"  data-language='en'></div>*@
                             </div>
 
                             <button type="submit" class="btn btn-primary m-t-15 waves-effect pull-right" style="margin:20px">

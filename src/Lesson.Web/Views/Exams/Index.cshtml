@@ -2,6 +2,7 @@
 @using Abp.Web.Mvc.Extensions
 @using Lesson.Domain.Exams.Exam.Dto;
 @using Lesson.Web.Models.RollCalls;
+@using Lesson.Authorization;
 @{
     ViewBag.Title = L("Exams");
     ViewBag.ActiveMenu = PageNames.Exams;
@@ -24,9 +25,13 @@
                             <i class="material-icons">more_vert</i>
                         </a>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="@Url.Action("CreateExam", "Exams",new Lesson.Web.Models.Exams.ExamViewModel { StartDate=DateTime.Now,EndDate=DateTime.Now })" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("CreateExam")</a></li>
+                            @if (IsGranted(permissionName: PermissionNames.Pages_Exams_Create))
+                            {
+                                <li><a href="@Url.Action("CreateExam", "Exams",new Lesson.Web.Models.Exams.ExamViewModel { StartDate=DateTime.Now,EndDate=DateTime.Now })" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("CreateExam")</a></li>
+                            }
                             <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>Refresh</a></li>
                         </ul>
+
 
                     </li>
                 </ul>
@@ -60,7 +65,7 @@
                                         {
                                             <li><a href="@Url.Action("ResultOfExams", "Exams",new GetExaminationInput { Id=exam.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Result")</a></li>
                                         }
-                                        else
+                                        else if (DateTime.Now > exam.StartDate && DateTime.Now < exam.EndDate)
                                         {
                                             <li><a href="@Url.Action("DetailExam", "Exams",new GetExaminationInput { Id=exam.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("StartExam")</a></li>
                                         }

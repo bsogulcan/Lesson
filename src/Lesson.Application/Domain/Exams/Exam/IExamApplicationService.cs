@@ -12,6 +12,6 @@ namespace Lesson.Domain.Exams.Exam
     {
         Task CreateAsync(CreateExamInput input);
         Task<List<ExaminationsFullOutPut>> GetListAsync();
-        ExaminationsFullOutPut Get(GetExaminationInput input);
+        Task<ExaminationsFullOutPut> GetAsync(GetExaminationInput input);
     }
 }

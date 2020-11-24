@@ -42,17 +42,6 @@ namespace Lesson.Web.Controllers
             return View("_EditModal", editModal);
         }
 
-        public ActionResult Students(GetStudentsOfClassRoomInput input)
-        {
-            var studentsOfClassRoom =  _studentOfClassRoomApplicationService.Get(new GetStudentsOfClassRoomInput { ClassRoomId = input.ClassRoomId });
-            if (studentsOfClassRoom != null)
-            { 
-                return RedirectToAction("Index","Students");
-            }
-            else
-            {
-                return View("Students", new List<StudentsOfClassRoomFullOutPut>());
-            }
-        }
+        
     }
 }

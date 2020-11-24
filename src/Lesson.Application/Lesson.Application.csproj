@@ -264,6 +264,12 @@
     <Compile Include="Domain\Lessons\Dto\LessonFullOutPut.cs" />
     <Compile Include="Domain\Lessons\Dto\UpdateLessonInput.cs" />
     <Compile Include="Domain\Lessons\ILessonApplicationService.cs" />
+    <Compile Include="Domain\News\Dto\CreateNewsInput.cs" />
+    <Compile Include="Domain\News\Dto\GetNewsInput.cs" />
+    <Compile Include="Domain\News\Dto\NewsFullOutPut.cs" />
+    <Compile Include="Domain\News\Dto\UpdateNewsInput.cs" />
+    <Compile Include="Domain\News\INewsApplicationService.cs" />
+    <Compile Include="Domain\News\NewsApplicationService.cs" />
     <Compile Include="Domain\RollCallDetails\Dto\CreateRollCallDetailInput.cs" />
     <Compile Include="Domain\RollCallDetails\Dto\DeleteRollCallDetailInput.cs" />
     <Compile Include="Domain\RollCallDetails\Dto\GetRollCallDetailInput.cs" />

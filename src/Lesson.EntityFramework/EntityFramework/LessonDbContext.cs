@@ -9,6 +9,7 @@ using Lesson.Classes;
 using Lesson.Domain.Exams;
 using Lesson.Domain.Homeworks;
 using Lesson.Domain.LessonsOfClassRoom;
+using Lesson.Domain.News;
 using Lesson.Domain.RollCalls;
 using Lesson.Domain.RollCallsDetail;
 using Lesson.Domain.StudentOfClassRoom;
@@ -32,6 +33,7 @@ namespace Lesson.EntityFramework
         public DbSet<ExaminationQuestion> ExamQuestions { get; set; }
         public DbSet<ExaminationQuestionAnswer> ExamQuestionAnswers { get; set; }
         public DbSet<StudentsAnswerOfExam> StudentsAnswerOfExams { get; set; }
+        public DbSet<News> News{ get; set; }
 
         public LessonDbContext()
             : base("Default")
