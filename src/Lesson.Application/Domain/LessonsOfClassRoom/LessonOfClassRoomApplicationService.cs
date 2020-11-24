@@ -58,23 +58,51 @@ namespace Lesson.Domain.LessonsOfClassRoom
             return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonsOfClassRoom);
         }
 
-        public async Task<List<LessonOfClassRoomFullOutPut>> GetListLessonsOfClassRoom(GetLessonOfClassRoomInput input)
+        //public async Task<List<LessonOfClassRoomFullOutPut>> GetListLessonsOfClassRoom1(GetLessonOfClassRoomInput input)
+        //{
+        //    var lessonsOfClassRoom = await _lessonOfClassRoom.GetAllListAsync();
+        //    lessonsOfClassRoom = lessonsOfClassRoom.Where(x => x.ClassRoom.Id == input.ClassRoomId).ToList();
+        //    return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonsOfClassRoom);
+        //}
+
+        public async Task<List<LessonFullOutPut>> GetListLessonsOfClassRoom(GetLessonOfClassRoomInput input)
         {
-            var lessonsOfClassRoom = await _lessonOfClassRoom.GetAllListAsync();
-            lessonsOfClassRoom = lessonsOfClassRoom.Where(x => x.ClassRoom.Id == input.ClassRoomId).ToList();
-            return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonsOfClassRoom);
+            List<LessonFullOutPut> lessonOfClassFullOutPut = new List<LessonFullOutPut>();
+
+            var lessonsOfClassRooms = _lessonOfClassRoom.GetAllIncluding().Where(x => x.ClassRoomId == input.ClassRoomId).ToList();
+
+            foreach (var lessonsOfClassRoom in lessonsOfClassRooms)
+            {
+                var lessonDto = ObjectMapper.Map<LessonFullOutPut>(lessonsOfClassRoom.Lesson);
+                lessonOfClassFullOutPut.Add(lessonDto);
+            }
+            return lessonOfClassFullOutPut;
         }
-        public async Task<List<LessonOfClassRoomFullOutPut>> GetListLessonsOfClassRoomById(int classRoomId)
+
+        public List<LessonOfClassRoomFullOutPut> GetListLessonsOfClassRoomBaseOutPut(GetLessonOfClassRoomInput input)
         {
-            var lessonsOfClassRoom = await _lessonOfClassRoom.GetAllListAsync();
-            lessonsOfClassRoom = lessonsOfClassRoom.Where(x => x.ClassRoom.Id == classRoomId).ToList();
+            var lessonsOfClassRooms = _lessonOfClassRoom.GetAllIncluding().Where(x => x.ClassRoomId == input.ClassRoomId).ToList();
+            return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonsOfClassRooms); 
+
+        }
+
+        public List<LessonOfClassRoomFullOutPut> GetListLessonsOfClassRoomById(int classRoomId)
+        {
+            var lessonsOfClassRoom = _lessonOfClassRoom.GetAllIncluding().Where(x => x.ClassRoomId == classRoomId).ToList();
             return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonsOfClassRoom);
         }
 
-        public List<LessonOfClassRoomFullOutPut> GetTeacherLessonsOfClassRoom(GetLessonOfClassRoomInput input)
+        public List<LessonOfClassRoomFullOutPut> GetStudentLessonsOfClassRoom(GetLessonOfClassRoomInput input)
         {
-            var lessonOfClassRoom = _lessonOfClassRoom.GetAllList().Where(x=>x.User.Id==input.UserId);
-            return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonOfClassRoom);
+            //var lessonOfClassRoom = _lessonOfClassRoom.GetAllIncluding().Where(x => x.ClassRoom.Id ).ToList();
+            //return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonOfClassRoom.ToList());
+            return null;
+        }
+
+        public List<LessonOfClassRoomFullOutPut> GetTeacherLessonsOfClassRoom(GetLessonOfClassRoomInput input)
+        { 
+            var lessonOfClassRoom = _lessonOfClassRoom.GetAllIncluding().Where(x => x.UserId == input.UserId).ToList();
+            return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonOfClassRoom.ToList());
         }
 
         public async Task<LessonOfClassRoomFullOutPut> UpdateAsync(UpdateLessonsOfClassRoomInput input)

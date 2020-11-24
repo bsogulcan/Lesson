@@ -6,11 +6,26 @@
         public const string Pages_Users = "Pages.Users";
         public const string Pages_Roles = "Pages.Roles";
 
-        #region Category
-        public const string Category_Categories = "Category.Categories";
-        public const string Category_AddCategory = "Category.AddCategory";
-        public const string Category_UpdateCategory = "Category.UpdateCategory";
-        public const string Category_DeleteCategory = "Category.DeleteCategory";
+        #region Definitions
+        public const string Pages_Definitions = "Pages.Definitions";
+        #endregion
+
+        #region Lessons
+        public const string Pages_Lessons = "Pages.Lessons";
+        #endregion
+
+        #region HomeWorks
+        public const string Pages_HomeWorks = "Pages.HomeWorks";
+        public const string Pages_HomeWorks_Create = "Pages.HomeWorks_Create";
+        #endregion
+
+        #region Exams
+        public const string Pages_Exams = "Pages.Exams";
+        public const string Pages_Exams_Create = "Pages.Exams_Create";
+        #endregion
+        
+        #region RollCalls
+        public const string Pages_RollCalls = "Pages.RollCalls";
         #endregion
 
         #region ClassRoom

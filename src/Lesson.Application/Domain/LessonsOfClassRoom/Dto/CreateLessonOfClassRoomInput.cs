@@ -10,6 +10,6 @@ namespace Lesson.Domain.LessonsOfClassRoom.Dto
     {
         public int LessonId { get; set; }
         public int ClassRoomId { get; set; }
-        public int UserId { get; set; }
+        public long UserId { get; set; }
     }
 }

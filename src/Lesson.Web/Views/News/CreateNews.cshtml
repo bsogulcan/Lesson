@@ -1,0 +1,41 @@
+﻿@model Lesson.Domain.News.Dto.CreateNewsInput
+@using Abp.Web.Mvc.Extensions
+@section scripts
+{
+    @Html.IncludeScript("~/Views/News/CreateNews.js")
+}
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script src="https://cdn.tiny.cloud/1/r0t18mna3abch2l4y0ae066fs0eb8ss5fkr4q4jmi6wcej7h/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>
+                @L("CreateNews")
+            </h2>
+
+        </div>
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="form-line">
+                            @Html.TextBoxFor(model => model.Summary, new {id="txtSummary", @class = "form-control", placeholder = "Summary Of News" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="newsContent">Information</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+                <div class="col-sm-12">
+                    <button type="submit" onclick="SaveNews()" class="btn btn-primary m-t-15 waves-effect">Create News</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

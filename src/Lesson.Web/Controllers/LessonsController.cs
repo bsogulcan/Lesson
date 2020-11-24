@@ -52,7 +52,7 @@ namespace Lesson.Web.Views.Lessons
 
         public async Task<ActionResult> LessonsOfClassRoom(Lesson.Domain.LessonsOfClassRoom.Dto.GetLessonOfClassRoomInput input)
         {
-            var lessonsOfClass = await _lessonOfClassRoomApplicationService.GetListLessonsOfClassRoom(new Domain.LessonsOfClassRoom.Dto.GetLessonOfClassRoomInput { ClassRoomId = input.ClassRoomId });
+            var lessonsOfClass = _lessonOfClassRoomApplicationService.GetListLessonsOfClassRoomBaseOutPut(new Domain.LessonsOfClassRoom.Dto.GetLessonOfClassRoomInput { ClassRoomId = input.ClassRoomId });
             var teachers = _userAppService.GetTeachers();
             var classRooms = await _classRoomAppService.GetListAsync();
             var lessons = await _lessonApplicationService.GetListAsync();
@@ -116,40 +116,35 @@ namespace Lesson.Web.Views.Lessons
                 Id = lessonsOfClass.Id,
                 ClassRoomId = lessonsOfClass.ClassRoom.Id,
                 LessonId = lessonsOfClass.Lesson.Id,
-                UserId = (int)lessonsOfClass.User.Id
+                UserId = lessonsOfClass.User.Id
             };
             return View("LessonOfClassRoom_EditModal", editModal);
         }
         public async Task<ActionResult> MyLessons()
         {
-            var teacherClasses = _lessonOfClassRoomApplicationService.GetTeacherLessonsOfClassRoom(new GetLessonOfClassRoomInput { UserId = (int)User.Identity.GetUserId() });
-            var studentClasses = await _studentOfClassRoomApplicationService.GetAsync(new Domain.StudentsOfClassRoom.Dto.GetStudentsOfClassRoomInput { UserId = (int)User.Identity.GetUserId() });
-            var lessons = await _lessonOfClassRoomApplicationService.GetListAsync();
             List<LessonOfClassRoomFullOutPut> myLessons = new List<LessonOfClassRoomFullOutPut>();
-            foreach (var lesson in lessons)
-            {
-                if (teacherClasses.Any(x => x.ClassRoom.Id == lesson.ClassRoom.Id&&x.User.Id==lesson.User.Id))
-                {
-                    LessonOfClassRoomFullOutPut lessonOfClassRoomFull = new LessonOfClassRoomFullOutPut();
-                    lessonOfClassRoomFull.ClassRoom = lesson.ClassRoom;
-                    lessonOfClassRoomFull.User = lesson.User;
-                    lessonOfClassRoomFull.Lesson = lesson.Lesson;
-                    lessonOfClassRoomFull.Id = lesson.Id;
-                    myLessons.Add(lessonOfClassRoomFull);
-                }
 
-                if (studentClasses.Any(y => y.ClassRoom.Id == lesson.ClassRoom.Id))
+            var getLessonOfClassRoomInput = new GetLessonOfClassRoomInput
+            {
+                UserId = (long)User.Identity.GetUserId()
+            };
+
+            var isTeacher = User.IsInRole("Öğretmen");
+            if (isTeacher)
+            {
+                myLessons = _lessonOfClassRoomApplicationService.GetTeacherLessonsOfClassRoom(getLessonOfClassRoomInput);
+            }
+            else
+            {
+                var studentsClassRoom = _studentOfClassRoomApplicationService.GetStudentsLessons(getLessonOfClassRoomInput);
+                foreach (var classRoom in studentsClassRoom)
                 {
-                    LessonOfClassRoomFullOutPut lessonOfClassRoomFull = new LessonOfClassRoomFullOutPut();
-                    lessonOfClassRoomFull.ClassRoom = lesson.ClassRoom;
-                    lessonOfClassRoomFull.User = lesson.User;
-                    lessonOfClassRoomFull.Lesson = lesson.Lesson;
-                    lessonOfClassRoomFull.Id = lesson.Id;
-                    myLessons.Add(lessonOfClassRoomFull);
-                } 
-            } 
+                    var lessonsOfClassRoom = _lessonOfClassRoomApplicationService.GetListLessonsOfClassRoomById(classRoom.ClassRoom.Id);
+                    myLessons.AddRange(lessonsOfClassRoom);
+                };
+            }
 
             return View("MyLessons", myLessons);
-        } 
+        }
     }
 }

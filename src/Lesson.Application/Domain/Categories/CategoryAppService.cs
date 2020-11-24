@@ -19,7 +19,7 @@ namespace Lesson.Categories.Dto
             _categoryRepository = categoryRepository;
         }
 
-        [Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_AddCategory)]
+        //[Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_AddCategory)]
         public void CreateCategory(CategoryInput input)
         {
             var category = _categoryRepository.FirstOrDefault(p => p.Name == input.Name);
@@ -33,7 +33,7 @@ namespace Lesson.Categories.Dto
             _categoryRepository.Insert(category);
         }
 
-        [Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_DeleteCategory)]
+        //[Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_DeleteCategory)]
         public void Delete(int id)
         {
             var category = _categoryRepository.FirstOrDefault(p => p.Id == id);
@@ -47,13 +47,13 @@ namespace Lesson.Categories.Dto
             }
         }
 
-        [Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_Categories)]
+        //[Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_Categories)]
         public List<Category> GetAllList()
         {
             return _categoryRepository.GetAllList();
         }
 
-        [Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_AddCategory)]
+        //[Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_AddCategory)]
         public Category GetCategoryById(int id)
         {
             var category = _categoryRepository.Get(id);
@@ -67,7 +67,7 @@ namespace Lesson.Categories.Dto
             }
         }
 
-        [Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_UpdateCategory)]
+        //[Abp.Authorization.AbpAuthorize(Lesson.Authorization.PermissionNames.Category_UpdateCategory)]
         public void Update(Category category)
         {
             var _category = _categoryRepository.FirstOrDefault(x=>x.Id== category.Id);

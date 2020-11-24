@@ -48,7 +48,8 @@ namespace Lesson.Domain.StudentsAnswersOfExam
 
         public List<StudentsAnswerOfExamFullOutPut> GetAnswersByExam(GetStudentsAnswerOfExamInput input)
         {
-            var studentsAnswersOfExam = _studentsAnswerOfExamRepository.GetAllList().Where(x => x.User.Id == input.UserId && x.Examination.Id == input.ExaminationId).ToList();
+            var studentsAnswersOfExam = _studentsAnswerOfExamRepository.GetAllIncluding()
+                .Where(x => x.UserId == input.UserId && x.ExaminationId== input.ExaminationId).ToList();
             return ObjectMapper.Map<List<StudentsAnswerOfExamFullOutPut>>(studentsAnswersOfExam);
         }
 

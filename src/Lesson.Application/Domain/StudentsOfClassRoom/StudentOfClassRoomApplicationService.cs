@@ -4,6 +4,7 @@ using Abp.UI;
 using AutoMapper;
 using Lesson.Authorization.Users;
 using Lesson.Classes;
+using Lesson.Domain.LessonsOfClassRoom.Dto;
 using Lesson.Domain.StudentsOfClassRoom.Dto;
 using System;
 using System.Collections.Generic;
@@ -78,27 +79,17 @@ namespace Lesson.Domain.StudentsOfClassRoom
 
             return ObjectMapper.Map<List<StudentsOfClassRoomFullOutPut>>(studentOfClassRoom);
         }
+        public List<StudentsOfClassRoomFullOutPut> GetStudentsLessons(GetLessonOfClassRoomInput input)
+        {
+            var studentOfClassRoom= _studentOfClassRoom.GetAllIncluding().Where(x => x.User.Id == input.UserId).ToList();
+            return ObjectMapper.Map<List<StudentsOfClassRoomFullOutPut>>(studentOfClassRoom);
+        }
+
 
         public async Task<List<StudentsOfClassRoomFullOutPut>> GetListAsync()
         {
             var studentsOfClassRoom = await _studentOfClassRoom.GetAllListAsync();
             return ObjectMapper.Map<List<StudentsOfClassRoomFullOutPut>>(studentsOfClassRoom);
-        }
-
-        public async Task<StudentsOfClassRoomFullOutPut> UpdateAsync(UpdateStudentOfClassRoomInput input)
-        {
-            StudentOfClassRoom.StudentOfClassRoom studentOfClassRoom = null;
-
-            if (input.ClassRoomId > 0)
-            {
-                studentOfClassRoom = _studentOfClassRoom.Get(input.ClassRoomId);
-            }
-            else
-            {
-                studentOfClassRoom = _studentOfClassRoom.Get(input.UserId);
-            }
-
-            return null;
         }
     }
 }

@@ -35,22 +35,23 @@ namespace Lesson.Domain.Exams.Exam
                 ClassRoom = await _entityManager.GetClassRoomAsync(input.ClassRoomId),
                 Lesson = await _entityManager.GetLessonAsync(input.LessonId),
                 User = await _entityManager.GetUserById(input.UserId),
-                TimeLimit=input.TimeLimit,
-                Questions=input.Questions
+                TimeLimit = input.TimeLimit,
+                Questions = input.Questions
             };
 
-            exam.Id = await _examRepository.InsertAndGetIdAsync(exam); 
+            exam.Id = await _examRepository.InsertAndGetIdAsync(exam);
         }
 
-        public ExaminationsFullOutPut Get(GetExaminationInput input)
+        public async Task<ExaminationsFullOutPut> GetAsync(GetExaminationInput input)
         {
-            var exam = _examRepository.Get(input.Id);
+            var exam = await _examRepository.GetAsync(input.Id);
+            exam.StudentsAnswers=exam.StudentsAnswers.Where(x => x.UserId == AbpSession.UserId).ToList();
             return ObjectMapper.Map<ExaminationsFullOutPut>(exam);
         }
 
         public async Task<List<ExaminationsFullOutPut>> GetListAsync()
         {
-            var exams =await _examRepository.GetAllListAsync();
+            var exams = await _examRepository.GetAllListAsync();
             return ObjectMapper.Map<List<ExaminationsFullOutPut>>(exams);
         }
     }

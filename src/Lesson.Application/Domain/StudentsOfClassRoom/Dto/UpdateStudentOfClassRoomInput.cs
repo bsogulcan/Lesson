@@ -9,7 +9,7 @@ namespace Lesson.Domain.StudentsOfClassRoom.Dto
 {
     public class UpdateStudentOfClassRoomInput:Entity<int>
     {
-        public int UserId { get; set; }
+        public long UserId { get; set; }
         public int ClassRoomId { get; set; }
 
     }

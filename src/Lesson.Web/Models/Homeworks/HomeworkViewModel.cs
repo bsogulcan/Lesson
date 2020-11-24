@@ -18,8 +18,6 @@ namespace Lesson.Web.Models.Homeworks
         public int ClassRoomId { get; set; }
         public List<ClassRoomFullOutPut> ClassRooms { get; set; }
         //public User User { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Deadline { get; set; }
 
     }

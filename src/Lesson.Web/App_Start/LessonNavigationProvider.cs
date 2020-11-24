@@ -25,10 +25,11 @@ namespace Lesson.Web
                         requiresAuthentication: true));
             #endregion
             #region Definitions
-            context.Manager.MainMenu.AddItem(new MenuItemDefinition(
+            context.Manager.MainMenu.AddItem(new MenuItemDefinition( 
                         PageNames.Definitions,
                         L("Definitions"),
-                        icon: "chrome_reader_mode"
+                        icon: "chrome_reader_mode",
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Definitions)
                  ).AddItem(new MenuItemDefinition(
                         PageNames.Tenants,
                         L("Roles"),
@@ -46,6 +47,10 @@ namespace Lesson.Web
                         PageNames.ClassRooms,
                         L("ClassRooms"),
                         url: "ClassRooms"
+                 )).AddItem(new MenuItemDefinition(
+                        PageNames.News,
+                        L("News"),
+                        url: "News"
                  )));
             #endregion
             #region My Lessons
@@ -53,36 +58,33 @@ namespace Lesson.Web
                         L("MyLessons"),
                         url: "Lessons/MyLessons",
                         icon: "library_books",
-                        requiresAuthentication: true));
+                        requiresAuthentication: true,
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Lessons)));
             #endregion
             #region My HomeWorks
             context.Manager.MainMenu.AddItem(new MenuItemDefinition("HomeWorks",
                         L("MyHomeWorks"),
                         url: "Homeworks",
                         icon: "games",
-                        requiresAuthentication: true));
+                        requiresAuthentication: true,
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_HomeWorks)));
             #endregion
             #region My Exams
             context.Manager.MainMenu.AddItem(new MenuItemDefinition("Exams",
-                        L("Exams"),
-                        icon: "extension",
-                        requiresAuthentication: true)
-                .AddItem(new MenuItemDefinition("Exams",
                         L("MyExams"),
+                        icon: "offline_pin",
                         url: "Exams",
-                        requiresAuthentication: true))
-                .AddItem(new MenuItemDefinition(
-                        PageNames.Tenants,
-                        L("ExamResults"),
-                        url: "Exams/ResultOfExams"
-                    )));
+                        requiresAuthentication: true,
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Exams))
+                );
             #endregion
             #region Roll Call
             context.Manager.MainMenu.AddItem(new MenuItemDefinition(PageNames.RollCalls,
                         L("RollCall"),
                         url: "RollCalls",
                         icon: "gavel",
-                        requiresAuthentication: true));
+                        requiresAuthentication: true,
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_RollCalls)));
             #endregion
         }
 

@@ -9,6 +9,10 @@
 {
     @Html.IncludeScript("~/Views/Homeworks/CreateHomework.js")
 }
+<link href="~/dist/css/datepicker.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="~/dist/js/datepicker.js"></script>
+<script src="~/dist/js/i18n/datepicker.en.js"></script>
 
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -33,29 +37,30 @@
         </div>
         <div class="body">
             <form name="InsertHomeWork" class="form-horizontal">
-
-
-
-                <h2 class="card-inside-title">ClassRoom - Lesson - Delivery Date</h2>
+                  
                 <div class="row clearfix">
                     <div class="col-sm-4">
-                        <div class="form-group form-float form-group-lg">
-                            @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new { onchange = @"form.submit();", @class = "form-control" })
+                        <div class="form-group form-float form-group">
+                            @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new {  @class = "form-control",id= "classRoomDropDown" })
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="form-group form-float form-group-lg">
-                            @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control" })
+                        <div class="form-group form-float form-group">
+                            @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control" ,id= "lessonsDropDown" })
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="form-group form-float form-group-lg">
-                            @Html.EditorFor(model => model.Deadline, new { type = "datetime-local", id = "Deadline", @class = "form-control" })
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type='text' id="Deadline" class='datepicker-here form-control' value="@Model.Deadline" data-language='en' />
+                            </div>
                         </div>
+
+
+                        @*@Html.EditorFor(model => model.Deadline, new { type = "datetime-local", id = "Deadline", @class = "form-control" })*@
                     </div>
                 </div>
 
-                <h2 class="card-inside-title">Homework Details</h2>
                 <div class="row clearfix">
                     <div class="col-sm-12">
                         <div class="form-group form-float form-group-lg">
@@ -64,7 +69,7 @@
                                 @*<label class="form-label">Summary</label>*@
                             </div>
                             <div class="form-line">
-                                @Html.TextArea("Description", Model.Description, new { @class = "form-control no-resize", placeholder = "Description" })
+                                @Html.TextArea("Description", Model.Description, new { @class = "form-control no-resize", placeholder = "Description" , rows = "8" })
                                 @*<textarea rows="4" class="form-control no-resize" placeholder="Homework Description"></textarea>*@
                             </div>
                         </div>
@@ -73,7 +78,7 @@
 
                 <div class="row clearfix">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Create Homework</button>
+                        <button type="submit"  class="btn btn-primary m-t-15 waves-effect">Create Homework</button>
                     </div>
                 </div>
 

@@ -17,7 +17,8 @@ namespace Lesson.Manager
         Task<Lesson.Domain.Lessons.Lesson> GetLessonAsync(int lessonId);
         Task<ClassRoom> GetClassRoomAsync(int classRoomId); 
         List<StudentOfClassRoom> GetClassRoomsByStudents(int studentId); 
-        Task<User> GetUserById(int userId); 
+        Task<User> GetUserById(long userId);
+        User GetUserByIdSync(long userId); 
 
     }
 }

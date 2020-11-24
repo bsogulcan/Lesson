@@ -8,7 +8,7 @@ namespace Lesson.Domain.StudentsAnswersOfExam.Dto
 {
     public class CreateStudentsAnswerOfExamInput
     {
-        public int UserId { get; set; }
+        public long UserId { get; set; }
         public int ExaminationId { get; set; }
         public int ExaminationQuestionId { get; set; }
         public int ExaminationQuestionAnswerId { get; set; }

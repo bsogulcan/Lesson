@@ -19,5 +19,6 @@ namespace Lesson.Domain.Exams
         public virtual Lesson.Domain.Lessons.Lesson Lesson { get; set; }
         public virtual User User { get; set; }
         public virtual List<ExaminationQuestion> Questions { get; set; }
+        public virtual List<StudentsAnswerOfExam.StudentsAnswerOfExam> StudentsAnswers { get; set; }
     }
 }

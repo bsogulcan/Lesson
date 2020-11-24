@@ -75,7 +75,7 @@ namespace Lesson.Domain.RollCallDetails
         {
             var rollCallDetail = await _roleCallDetailRepository.GetAsync(input.Id); 
             rollCallDetail.RollCallType = input.RollCallType;
-
+            _roleCallDetailRepository.UpdateAsync(rollCallDetail);
             return ObjectMapper.Map<RollCallDetailFullOutPut>(rollCallDetail);
         }
     }

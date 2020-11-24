@@ -5,6 +5,7 @@ using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.ObjectMapping;
+using Abp.UI;
 using Lesson.Authorization;
 using Lesson.Categories;
 using Lesson.Classes.Dto;
@@ -28,24 +29,28 @@ namespace Lesson.Classes
             _unitOfWorkManager = unitOfWorkManager;
         }
 
-        [AbpAuthorize(PermissionNames.ClassRoom_Create)]
+        //[AbpAuthorize(PermissionNames.ClassRoom_Create)]
         public async Task<ClassRoomFullOutPut> CreateAsync(CreateClassRoomInput input)
         {
-            var classRoom = new ClassRoom
+            var newClassRoom = new ClassRoom
             {
                 Name = input.Name,
                 Branch = input.Branch,
                 Description = input.Description
             };
 
-            await _classRepository.InsertAsync(classRoom);
+            await _classRepository.InsertAsync(newClassRoom);
             await _unitOfWorkManager.Current.SaveChangesAsync();
-            return ObjectMapper.Map<ClassRoomFullOutPut>(classRoom);
+            return ObjectMapper.Map<ClassRoomFullOutPut>(newClassRoom);
         }
-        [AbpAuthorize(PermissionNames.ClassRoom_Delete)]
+
+        //[AbpAuthorize(PermissionNames.ClassRoom_Delete)]
         public async Task Delete(DeleteClassRoomInput input)
         {
             var classRoom = await _classRepository.GetAsync(input.Id);
+            if (classRoom == null)
+                throw new UserFriendlyException("The Class room to be deleted could not be found.");
+
             await _classRepository.DeleteAsync(classRoom.Id);
 
             await _unitOfWorkManager.Current.SaveChangesAsync();
@@ -58,17 +63,21 @@ namespace Lesson.Classes
             return ObjectMapper.Map<ClassRoomFullOutPut>(classRoom);
         }
 
-        [AbpAuthorize(PermissionNames.ClassRoom_GetList)]
+        //[AbpAuthorize(PermissionNames.ClassRoom_GetList)]
         public async Task<List<ClassRoomFullOutPut>> GetListAsync()
         {
             var classRoom = await _classRepository.GetAllListAsync();
             return ObjectMapper.Map<List<ClassRoomFullOutPut>>(classRoom);
         }
 
-        [AbpAuthorize(PermissionNames.ClassRoom_Update)]
+        //[AbpAuthorize(PermissionNames.ClassRoom_Update)]
         public async Task<ClassRoomFullOutPut> UpdateAsync(EditClassRoomInput input)
         {
             var classRoom = await _classRepository.GetAsync(input.Id);
+
+            if (classRoom==null)
+                throw new UserFriendlyException("The Class room to be updated could not be found.");
+             
             classRoom.Name = input.Name;
             classRoom.Branch = input.Branch;
             classRoom.Description = input.Description;

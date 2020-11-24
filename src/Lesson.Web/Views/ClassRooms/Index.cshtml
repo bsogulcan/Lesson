@@ -52,27 +52,17 @@
                                         <li><a href="@Url.Action("GetStudentByClassRoom", "Students",new GetStudentsOfClassRoomInput{ClassRoomId=classRoom.Id })" class="waves-effect waves-block class_room_students" data-classRoom-id="@classRoom.Id"><i class="material-icons">accessibility</i>@L("Students")</a></li>
                                         <li><a href="@Url.Action("LessonsOfClassRoom", "Lessons",new Lesson.Domain.LessonsOfClassRoom.Dto.GetLessonOfClassRoomInput{ClassRoomId=classRoom.Id })" class="waves-effect waves-block class_room_students" data-classRoom-id="@classRoom.Id"><i class="material-icons">accessibility</i>@L("Lessons")</a></li>
 
-                                        @if (IsGranted(Lesson.Authorization.PermissionNames.ClassRoom_Update))
-                                        {
-                                            <li><a href="#" class="waves-effect waves-block edit-class_room" data-classRoom-id="@classRoom.Id" data-toggle="modal" data-target="#ClassRoomEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
-                                        }
-
-                                        @if (IsGranted(Lesson.Authorization.PermissionNames.ClassRoom_Delete))
-                                        {
-                                            <li><a href="#" class="waves-effect waves-block delete-class_room" data-role-id="@classRoom.Id" data-role-name="@classRoom.Name"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
-                                        }
+                                        <li><a href="#" class="waves-effect waves-block edit-class_room" data-classRoom-id="@classRoom.Id" data-toggle="modal" data-target="#ClassRoomEditModal"><i class="material-icons">edit</i>@L("Edit")</a></li>
+                                        <li><a href="#" class="waves-effect waves-block delete-class_room" data-role-id="@classRoom.Id" data-role-name="@classRoom.Name"><i class="material-icons">delete_sweep</i>@L("Delete")</a></li>
                                     </ul>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
-                @if (IsGranted(Lesson.Authorization.PermissionNames.ClassRoom_Create))
-                {
-                    <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#ClassRoomCreateModal">
-                        <i class="material-icons">add</i>
-                    </button>
-                }
+                <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#ClassRoomCreateModal">
+                    <i class="material-icons">add</i>
+                </button>
             </div>
         </div>
     </div>
@@ -130,10 +120,10 @@
                     <div class="modal-footer">
                         <button type="button" onclick="btnCreateClassRoom()" class="btn btn-default waves-effect" data-dismiss="modal">@L("Cancel")</button>
                         <button type="submit" class="btn btn-primary waves-effect">@L("Save")</button>
-                    </div> 
+                    </div>
                 </form>
             </div>
-        </div> 
+        </div>
     </div>
 </div>
 

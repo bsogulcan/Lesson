@@ -12,7 +12,7 @@ namespace Lesson.Domain.Exams.Exam.Dto
         public int TimeLimit { get; set; }
         public int ClassRoomId { get; set; }
         public int LessonId { get; set; }
-        public int UserId { get; set; }
+        public long UserId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public List<ExaminationQuestion> Questions { get; set; }

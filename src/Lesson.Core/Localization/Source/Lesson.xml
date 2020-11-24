@@ -100,6 +100,8 @@
    <text name="Exams">Sınavlar</text>
    <text name="ExamResults">Sınav Sonuçlarım</text>
    <text name="ExamResult">Sınav Sonucu</text>
+   <text name="StartExam">Sınavı Başlat</text>
+   <text name="CreateExam">Sınav Oluştur</text>
    <text name="Result">Sonuç</text>
    <text name="RollCall">Yoklama</text>
    <text name="RollCalls">Yoklamalar</text>

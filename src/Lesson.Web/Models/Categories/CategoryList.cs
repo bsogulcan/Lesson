@@ -18,19 +18,20 @@ namespace Lesson.Web.Models.Categories
         }
         public string HasPermissionAny()
         {
-            if (_permissionChecker.IsGranted(Lesson.Authorization.PermissionNames.Category_UpdateCategory))
-            {
-                return string.Empty;
-            }
-            else if (_permissionChecker.IsGranted(Lesson.Authorization.PermissionNames.Category_DeleteCategory))
-            {
-                return string.Empty;
+            //if (_permissionChecker.IsGranted(Lesson.Authorization.PermissionNames.Category_UpdateCategory))
+            //{
+            //    return string.Empty;
+            //}
+            //else if (_permissionChecker.IsGranted(Lesson.Authorization.PermissionNames.Category_DeleteCategory))
+            //{
+            //    return string.Empty;
 
-            }
-            else 
-            {
-                return "display:none;";
-            }
+            //}
+            //else 
+            //{
+            //    return "display:none;";
+            //}
+            return string.Empty;
         }
     }
 }
