@@ -38,7 +38,7 @@ namespace Lesson.EntityFramework
         public LessonDbContext()
             : base("Default")
         {
-
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         /* NOTE:
