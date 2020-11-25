@@ -62,7 +62,7 @@ namespace Lesson.Web
                         permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Lessons)));
             #endregion
             #region My HomeWorks
-            context.Manager.MainMenu.AddItem(new MenuItemDefinition("HomeWorks",
+            context.Manager.MainMenu.AddItem(new MenuItemDefinition(PageNames.Homeworks,
                         L("MyHomeWorks"),
                         url: "Homeworks",
                         icon: "games",
