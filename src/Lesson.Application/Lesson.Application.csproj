@@ -296,6 +296,11 @@
     <Compile Include="Domain\StudentsOfClassRoom\Dto\StudentsOfClassRoomFullOutPut.cs" />
     <Compile Include="Domain\StudentsOfClassRoom\Dto\UpdateStudentOfClassRoomInput.cs" />
     <Compile Include="Domain\StudentsOfClassRoom\IStudentOfClassRoomApplicationService.cs" />
+    <Compile Include="Domain\SubmittedHomeworks\Dto\CreateSubmittedHomeworkInput.cs" />
+    <Compile Include="Domain\SubmittedHomeworks\Dto\GetSubmittedHomeworkInput.cs" />
+    <Compile Include="Domain\SubmittedHomeworks\Dto\SubmittedHomeworksFullOutPut.cs" />
+    <Compile Include="Domain\SubmittedHomeworks\ISubmittedHomeworksApplicationService.cs" />
+    <Compile Include="Domain\SubmittedHomeworks\SubmittedHomeworksApplicationService.cs" />
     <Compile Include="LessonApplicationModule.cs" />
     <Compile Include="LessonAppServiceBase.cs" />
     <Compile Include="Authorization\Accounts\AccountAppService.cs" />

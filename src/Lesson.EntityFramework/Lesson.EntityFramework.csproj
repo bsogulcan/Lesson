@@ -281,6 +281,18 @@
     <Compile Include="Migrations\202011240018072_CreatedNewsEntitiy.designer.cs">
       <DependentUpon>202011240018072_CreatedNewsEntitiy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011261340529_AddedSubmittedHomeworksEntity.cs" />
+    <Compile Include="Migrations\202011261340529_AddedSubmittedHomeworksEntity.designer.cs">
+      <DependentUpon>202011261340529_AddedSubmittedHomeworksEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011261344498_AddedNewPropertiesToSubmittedHomeworksEntity.cs" />
+    <Compile Include="Migrations\202011261344498_AddedNewPropertiesToSubmittedHomeworksEntity.designer.cs">
+      <DependentUpon>202011261344498_AddedNewPropertiesToSubmittedHomeworksEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011261456547_AddedFkOnSubmittedHomeworks.cs" />
+    <Compile Include="Migrations\202011261456547_AddedFkOnSubmittedHomeworks.designer.cs">
+      <DependentUpon>202011261456547_AddedFkOnSubmittedHomeworks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedData\DefaultEditionsCreator.cs" />
@@ -341,6 +353,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011240018072_CreatedNewsEntitiy.resx">
       <DependentUpon>202011240018072_CreatedNewsEntitiy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011261340529_AddedSubmittedHomeworksEntity.resx">
+      <DependentUpon>202011261340529_AddedSubmittedHomeworksEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011261344498_AddedNewPropertiesToSubmittedHomeworksEntity.resx">
+      <DependentUpon>202011261344498_AddedNewPropertiesToSubmittedHomeworksEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011261456547_AddedFkOnSubmittedHomeworks.resx">
+      <DependentUpon>202011261456547_AddedFkOnSubmittedHomeworks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -55,7 +55,7 @@ namespace Lesson.Domain.StudentsAnswersOfExam
 
         public bool IsUserApprovedExam(GetStudentsAnswerOfExamInput input)
         { 
-            return _studentsAnswerOfExamRepository.GetAllList().Where(x => x.User.Id == input.UserId && x.Examination.Id == input.ExaminationId).ToList().Count > 0 ? true : false;
+            return _studentsAnswerOfExamRepository.GetAllList().Where(x => x.User.Id == input.UserId && x.ExaminationId == input.ExaminationId).ToList().Count > 0 ? true : false;
         }
     }
 }

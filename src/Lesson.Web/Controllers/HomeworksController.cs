@@ -5,6 +5,8 @@ using Lesson.Domain.Homeworks;
 using Lesson.Domain.Homeworks.Dto;
 using Lesson.Domain.Lessons.Dto;
 using Lesson.Domain.LessonsOfClassRoom;
+using Lesson.Domain.SubmittedHomeworks;
+using Lesson.Domain.SubmittedHomeworks.Dto;
 using Lesson.Web.Models.Homeworks;
 using Microsoft.AspNet.Identity;
 using System;
@@ -12,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Lesson.Web.Controllers
@@ -21,14 +24,17 @@ namespace Lesson.Web.Controllers
         private readonly IHomeworkApplicationService _homeworkApplicationService;
         private readonly IClassRoomAppService _classRoomAppService;
         private readonly ILessonOfClassRoomApplicationService _lessonOfClassRoomApplicationService;
+        private readonly ISubmittedHomeworksApplicationService _submittedHomeworksApplicationService;
 
         public HomeworksController(IHomeworkApplicationService homeworkApplicationService,
             IClassRoomAppService classRoomAppService,
-            ILessonOfClassRoomApplicationService lessonOfClassRoomApplicationService)
+            ILessonOfClassRoomApplicationService lessonOfClassRoomApplicationService,
+            ISubmittedHomeworksApplicationService submittedHomeworksApplicationService)
         {
             _homeworkApplicationService = homeworkApplicationService;
             _classRoomAppService = classRoomAppService;
             _lessonOfClassRoomApplicationService = lessonOfClassRoomApplicationService;
+            _submittedHomeworksApplicationService = submittedHomeworksApplicationService;
         }
 
         // GET: Homeworks
@@ -71,7 +77,7 @@ namespace Lesson.Web.Controllers
 
         public async Task<ActionResult> HomeworkDetail(GetHomeworkInput input)
         {
-            var homework =await _homeworkApplicationService.GetAsync(input); 
+            var homework = await _homeworkApplicationService.GetAsync(input);
             return View("HomeworkDetail", homework);
         }
 
@@ -91,5 +97,35 @@ namespace Lesson.Web.Controllers
 
             return Json(new { HomeworkId = createdHomeworkModel.Id });
         }
+
+        public async Task<JsonResult> SubmiteHomework(CreateSubmittedHomeworkInput input)
+        {
+            input.File = Convert.FromBase64String(input.FileBase64);
+            input.UserId = User.Identity.GetUserId<long>();
+
+            await _submittedHomeworksApplicationService.CreateAsync(input);
+            return Json(new { success = true });
+        }
+
+        public async Task<ActionResult> SubmittedHomeworks(GetHomeworkInput input)
+        {
+            var homework = await _homeworkApplicationService.GetAsync(input);
+
+            //var getSubmittedHomeworkInput = new GetSubmittedHomeworkInput
+            //{
+            //    HomeworkId = input.Id
+            //};
+
+            //homework.SubmittedHomeworks = _submittedHomeworksApplicationService.GetByHomework(getSubmittedHomeworkInput);
+            
+            return View("SubmittedHomeworks", homework);
+        }
+
+        public async Task<FileResult> HomeworkDownloadAsync(GetSubmittedHomeworkInput input)
+        {
+            var submittedHomework = await _submittedHomeworksApplicationService.GetAsync(input); 
+            return File(submittedHomework.File, submittedHomework.Type, submittedHomework.Name);
+        }
+
     }
 }

@@ -101,6 +101,7 @@
                                                 Questions #@(Model.Questions.IndexOf(question)+1)
                                             </a>
                                         </h4>
+
                                     </div>
                                     <div id="collapseOne_@(Model.Questions.IndexOf(question)+1)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_@(Model.Questions.IndexOf(question)+1)" aria-expanded="false" style="height: 0px;">
                                         <div>
@@ -111,7 +112,11 @@
                                                             @Html.TextArea("Question" + @Model.Questions.IndexOf(question), question.Question, new { @class = "form-control no-resize", placeholder = "Question?" })
                                                         </h2>
                                                     </div>
+                                                    
                                                     <div class="body">
+                                                        <button type="button" onclick="AddAnswer(this)" questionIndex="@Model.Questions.IndexOf(question)" class="btn btn-primary waves-effect pull-right">
+                                                            <i class="material-icons">add</i>
+                                                        </button>
                                                         @foreach (var answer in question.Answers)
                                                         {
                                                             <div class="input-group ">
@@ -122,8 +127,10 @@
                                                                 <div class="form-line">
                                                                     @Html.TextBox("Answer" + @Model.Questions.IndexOf(question) + " " + @question.Answers.IndexOf(answer), answer.Answer, new { @class = "form-control", placeholder = "Answer?" })
                                                                 </div>
+
                                                             </div>
                                                         }
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -131,7 +138,14 @@
                                     </div>
                                 </div>
                             }
+
+                            
+
                         </div>
+
+                        <button type="button" onclick="AddQuestion(this)" class="btn btn-primary m-t-15 waves-effect pull-right" >
+                            <i class="material-icons">add</i>Add Question
+                        </button>
 
                     </div>
                 </div>

@@ -44,7 +44,8 @@ namespace Lesson.Web
                         "~/Abp/Framework/scripts/libs/abp.spin.js",
                         "~/Abp/Framework/scripts/libs/abp.sweet-alert.js",
                         "~/js/admin.js",
-                        "~/js/main.js"
+                        "~/js/main.js",
+                        "~/Scripts/DataTables/dataTables.autoFill.js"
                     )
             );
 

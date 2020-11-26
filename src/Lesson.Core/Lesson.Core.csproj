@@ -231,6 +231,7 @@
     <Compile Include="Domain\Homeworks\SentHomeworkInfoNotificationData .cs" />
     <Compile Include="Domain\StudentsAnswersOfExam\StudentsAnswerOfExam.cs" />
     <Compile Include="Domain\StudentsOfClassRoom\StudentOfClassRoom.cs" />
+    <Compile Include="Domain\SubmittedHomeworks\SubmittedHomeworks.cs" />
     <Compile Include="LessonConsts.cs" />
     <Compile Include="LessonCoreModule.cs" />
     <Compile Include="AppVersionHelper.cs" />

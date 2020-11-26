@@ -10,13 +10,14 @@ using Lesson.Classes;
 
 namespace Lesson.Domain.Homeworks
 {
-    public class Homework:FullAuditedAggregateRoot<int>
+    public class Homework : FullAuditedAggregateRoot<int>
     {
         public string Summary { get; set; }
         public string Description { get; set; }
         public virtual Lesson.Domain.Lessons.Lesson Lesson { get; set; }
-        public virtual ClassRoom ClassRoom{ get; set; }
+        public virtual ClassRoom ClassRoom { get; set; }
         public virtual User User { get; set; }
         public DateTime Deadline { get; set; }
+        public virtual List<SubmittedHomeworks.SubmittedHomeworks> SubmittedHomeworks { get; set; }
     }
 }

@@ -20,6 +20,8 @@ using Lesson.Domain.StudentOfClassRoom;
 using Lesson.Domain.StudentsAnswerOfExam;
 using Lesson.Domain.StudentsAnswersOfExam.Dto;
 using Lesson.Domain.StudentsOfClassRoom.Dto;
+using Lesson.Domain.SubmittedHomeworks;
+using Lesson.Domain.SubmittedHomeworks.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,7 +93,10 @@ namespace Lesson.Manager
             cfg.CreateMap<StudentsAnswerOfExam, StudentsAnswerOfExamFullOutPut>(); 
             
             // News
-            cfg.CreateMap<News, NewsFullOutPut>(); 
+            cfg.CreateMap<News, NewsFullOutPut>();  
+            
+            // SubmittedHomework
+            cfg.CreateMap<SubmittedHomeworks, SubmittedHomeworksFullOutPut>(); 
 
         } 
     }

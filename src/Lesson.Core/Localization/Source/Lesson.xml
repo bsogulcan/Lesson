@@ -112,5 +112,8 @@
    <text name="CorrectAnswerCount">Doğru Cevap Sayısı</text>
    <text name="WrongAnswerCount">Yanlış Cevap Sayısı</text>
    
+   <text name="News">Duyurular</text>
+   <text name="CreateNews">Duyuru Ekle</text>
+   
   </texts>
 </localizationDictionary>
