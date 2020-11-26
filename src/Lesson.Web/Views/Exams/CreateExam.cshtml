@@ -57,7 +57,10 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        @Html.DropDownList("lessonsDropDown", new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control", id = "lessonsDropDown" })
+                                        @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control", id = "lessonsDropDown" })
+
+
+                                        @*@Html.DropDownList("lessonsDropDown", new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control", id = "lessonsDropDown" })*@
                                     </div>
                                 </div>
 
