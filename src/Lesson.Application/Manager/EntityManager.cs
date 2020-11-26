@@ -50,9 +50,9 @@ namespace Lesson.Manager
             return studentOfClassRooms;
         }
 
-        public Task<Homework> GetHomeworkAsync(int homeworkId)
+        public async Task<Homework> GetHomeworkAsync(int homeworkId)
         {
-            var homework = _homeworkRepository.FirstOrDefaultAsync(x => x.Id == homeworkId);
+            var homework =await _homeworkRepository.FirstOrDefaultAsync(x => x.Id == homeworkId);
             if (homework == null)
             {
                 throw new EntityNotFoundException(typeof(Homework), homeworkId);

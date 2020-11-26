@@ -88,7 +88,79 @@
             }).always(function () { 
             }); 
           });
-  
         })
 })();
 
+function AddAnswer(button){
+    var questionIndex=button.getAttribute("questionIndex");
+    var collapseName="collapseOne_"+(parseInt(questionIndex)+1);
+    var collapseDiv=document.querySelector("#"+collapseName+" > div > div > div > div.body");
+    var answerIndex=collapseDiv.childElementCount-1;
+    const div = document.createElement('div'); 
+    div.className = 'input-group';
+    
+    console.log(answerIndex);
+
+    div.innerHTML = `
+        <span class="input-group-addon">
+        <input type="checkbox" class="filled-in" id="ig_checkbox`+questionIndex+` `+answerIndex+`" name="ig_checkbox`+questionIndex+` 0">
+        <label for="ig_checkbox`+questionIndex+` `+answerIndex+`"></label>
+        </span>
+        <div class="form-line">
+        <input class="form-control" id="Answer`+questionIndex+`_`+answerIndex+`" name="Answer`+questionIndex+` `+answerIndex+`" placeholder="Answer?" type="text" value="">
+        </div> 
+    `;  
+    collapseDiv.appendChild(div)
+}
+
+function AddQuestion(button){
+    var questionsDiv=document.querySelector("#accordion_1");
+    var questionIndex=questionsDiv.childElementCount+1;
+    var _questionIndex=questionsDiv.childElementCount;
+    const div = document.createElement('div'); 
+    div.className = 'panel panel-col-green';
+
+    div.innerHTML = `
+    <div class="panel-heading" role="tab" id="headingOne_`+questionIndex+`">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseOne_`+questionIndex+`" aria-expanded="true" aria-controls="collapseOne_`+questionIndex+`" class="">
+                                                Questions #`+questionIndex+`
+                                            </a>
+                                        </h4>
+
+                                    </div>
+                                    <div id="collapseOne_`+questionIndex+`" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_1" aria-expanded="true" style="">
+                                        <div>
+                                            <div>
+                                                <div>
+                                                    <div class="header">
+                                                        <h2>
+                                                            <textarea class="form-control no-resize" cols="20" id="Question`+questionIndex+`" name="Question`+questionIndex+`" placeholder="Question?" rows="2"></textarea>
+                                                        </h2>
+                                                    </div>
+                                                    
+                                                    <div class="body">
+                                                        <button type="button" onclick="AddAnswer(this)" questionindex="`+_questionIndex+`" class="btn btn-primary waves-effect pull-right">
+                                                            <i class="material-icons">add</i>
+                                                        </button>
+                                                            <div class="input-group ">
+                                                                <span class="input-group-addon">
+                                                                    <input type="checkbox" class="filled-in" id="ig_checkbox`+_questionIndex+` 0" name="ig_checkbox`+_questionIndex+` 0">
+                                                                    <label for="ig_checkbox`+_questionIndex+` 0"></label>
+                                                                </span>
+                                                                <div class="form-line">
+                                                                    <input class="form-control" id="Answer`+_questionIndex+`_0" name="Answer`+_questionIndex+` 0" placeholder="Answer?" type="text" value="">
+                                                                </div>
+
+                                                            </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+`;  
+    questionsDiv.appendChild(div)
+
+
+}

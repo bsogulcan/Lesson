@@ -47,5 +47,17 @@ namespace Lesson.Web.Controllers
             var news = await _newsApplicationService.GetAsync(input);
             return View("DetailNews",news);
         }
+
+        public ActionResult SearchNews(string summary)
+        {
+            var getNewsInput = new GetNewsInput
+            {
+                Summary = summary
+            };
+
+            var news = _newsApplicationService.Search(getNewsInput);
+
+            return View("SearchNews", news);
+        }
     }
 }

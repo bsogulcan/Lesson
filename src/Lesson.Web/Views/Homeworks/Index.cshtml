@@ -9,6 +9,25 @@
 @section scripts
 {
     @Html.IncludeScript("~/Views/Homeworks/Index.js")
+
+    @Html.IncludeStyle("~/css/dataTables.bootstrap.css")
+    @Html.IncludeScript("~/Scripts/jqueryDatatables/jquery.dataTables.js")
+    @Html.IncludeScript("~/Scripts/jqueryDatatables/dataTables.bootstrap.js")
+
+    <script>
+
+        (function () {
+            $(function () {
+                $('#tblHomeworks').DataTable({
+                    "language": {
+                        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                    }
+                });
+
+            })
+        })();
+    </script>
+
 }
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -33,59 +52,49 @@
                     </li>
                 </ul>
             </div>
-            <div class="body table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Lesson</th>
-                            <th>Class Room</th>
-                            <th>Summary</th>
-                            <th>Delivery Date</th>
-                            <th>Teacher Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var rollCall in Model)
-                        {
+
+            <div class="body"> 
+                <div class="table" >
+                    <table id="tblHomeworks" role="grid" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                        <thead>
                             <tr>
-                                <td>@rollCall.Lesson.Name</td>
-                                <td>@rollCall.ClassRoom.Name @rollCall.ClassRoom.Branch</td>
-                                <td>@rollCall.Summary</td>
-                                <td>@rollCall.Deadline</td>
-                                <td>@rollCall.User.Name @rollCall.User.Surname</td>
-                                <td class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">menu</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="@Url.Action("HomeworkDetail", "HomeWorks",new GetHomeworkInput{ Id=rollCall.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Details")</a></li>
-                                    </ul>
-                                </td>
+                                <th>Lesson</th>
+                                <th>Class Room</th>
+                                <th>Summary</th>
+                                <th>Delivery Date</th>
+                                <th>Teacher Name</th>
+                                <th>Options</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var rollCall in Model)
+                            {
+                                <tr>
+                                    <td>@rollCall.Lesson.Name</td>
+                                    <td>@rollCall.ClassRoom.Name @rollCall.ClassRoom.Branch</td>
+                                    <td>@rollCall.Summary</td>
+                                    <td>@rollCall.Deadline</td>
+                                    <td>@rollCall.User.Name @rollCall.User.Surname</td>
+                                    <td class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">menu</i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            @if (IsGranted(PermissionNames.Pages_HomeWorks_Create))
+                                            {
+                                                <li><a href="@Url.Action("SubmittedHomeworks", "HomeWorks",new GetHomeworkInput{ Id=rollCall.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("SubmittedHomeworks")</a></li>
+                                            }
 
-            </div>
-        </div>
-    </div>
-</div>
 
-
-
-<div class="modal fade" id="ClassRoomCreateModal" tabindex="-1" role="dialog" aria-labelledby="ClassRoomCreateModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="ClassRoomEditModal" tabindex="-1" role="dialog" aria-labelledby="ClassRoomEditModalLabel" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
+                                            <li><a href="@Url.Action("HomeworkDetail", "HomeWorks",new GetHomeworkInput{ Id=rollCall.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Details")</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table> 
+                </div> 
+            </div> 
         </div>
     </div>
 </div>

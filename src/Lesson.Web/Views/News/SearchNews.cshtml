@@ -1,0 +1,48 @@
+﻿@model List<Lesson.Domain.News.Dto.NewsFullOutPut>
+@{
+    ViewBag.Title = "SearchNews";
+    ViewBag.ActiveMenu = PageNames.Home;
+}
+@if (Model.Count == 0)
+{
+    <div class="block-header">
+        <h2>No news related to the searched word found</h2>
+    </div>
+}
+else
+{
+    foreach (var news in Model)
+    {
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                <div class="panel panel-default panel-post">
+                    <div class="panel-heading">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img src="../../images/user.png">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="#">@news.Summary</a>
+                                </h4>
+                                @news.CreateionTime / @news.User.Name @news.User.Surname
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="post">
+                            <div class="post-heading">
+                                @Html.Raw(System.Web.HttpUtility.HtmlDecode(news.Content))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+
+}
+

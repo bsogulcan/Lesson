@@ -62,6 +62,22 @@ namespace Lesson.Domain.News
             return newsFullOutPutList.OrderByDescending(x=>x.CreateionTime).ToList();
         }
 
+        public List<NewsFullOutPut> Search(GetNewsInput input)
+        {
+            var newsList = _newsRepository.GetAllIncluding().Where(x => x.Summary.Contains(input.Summary)).ToList();
+            var newsFullOutPutList = new List<NewsFullOutPut>();
+            foreach (var news in newsList)
+            {
+                var newsFullOutPut = ObjectMapper.Map<NewsFullOutPut>(news);
+                newsFullOutPut.User = _entityManager.GetUserByIdSync(news.CreatorUserId ?? default(int));
+                newsFullOutPut.CreateionTime = news.CreationTime;
+                newsFullOutPutList.Add(newsFullOutPut);
+            }
+
+
+            return ObjectMapper.Map<List<NewsFullOutPut>>(newsFullOutPutList);
+        }
+
         public async Task<NewsFullOutPut> UpdateAsync(UpdateNewsInput input)
         {
             var news = await _newsRepository.GetAsync(input.Id);

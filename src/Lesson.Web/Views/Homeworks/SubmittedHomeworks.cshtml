@@ -1,0 +1,147 @@
+﻿@model Lesson.Domain.Homeworks.Dto.HomeworkFullOutPut
+@using Abp.Web.Mvc.Extensions
+@using Lesson.Domain.Homeworks.Dto;
+@using Lesson.Domain.SubmittedHomeworks.Dto;
+@{
+    ViewBag.Title = L("HomeworkDetail");
+    ViewBag.ActiveMenu = PageNames.Homeworks;
+}
+
+@section scripts
+{
+
+    @Html.IncludeStyle("~/css/dataTables.bootstrap.css")
+    @Html.IncludeScript("~/Scripts/jqueryDatatables/jquery.dataTables.js")
+    @Html.IncludeScript("~/Scripts/jqueryDatatables/dataTables.bootstrap.js")
+
+    <script>
+
+        (function () {
+            $(function () {
+                $('#tblHomeworks').DataTable({
+                    "language": {
+                        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                    }
+                });
+
+            })
+        })();
+    </script>
+}
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Submitted Homeworks
+                </h2>
+
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Action</a></li>
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Another action</a></li>
+                            <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-lg-1 col-md-1 col-sm-4 col-xs-1 form-control-label">
+                        <label for="email_address_2">ClassRoom</label>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-3 col-xs-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.Label("Class", Model.ClassRoom.Name + " " + Model.ClassRoom.Branch, new { onchange = @"form.submit();", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-1 col-sm-4 col-xs-1 form-control-label">
+                        <label for="password_2">Lesson</label>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-3 col-xs-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.Label("Lesson", Model.Lesson.Name, new { onchange = @"form.submit();", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-1 col-sm-4 col-xs-1 form-control-label">
+                        <label for="password_2">Delivery Date</label>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-3 col-xs-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.Label("Deadline", Model.Deadline.ToString(), new { onchange = @"form.submit();", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-1 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="password_2">Summary</label>
+                    </div>
+                    <div class="col-lg-11 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.Label("Summary", Model.Summary, new { @class = "form-control", placeholder = "Summary" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-lg-1 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                        <label for="password_2">Detail</label>
+                    </div>
+                    <div class="col-lg-11 col-md-10 col-sm-8 col-xs-7">
+                        <div class="form-group">
+                            <div class="form-line">
+                                @Html.Label("Description", Model.Description, new { @class = "form-control no-resize", placeholder = "Description" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table">
+                    <table id="tblHomeworks" role="grid" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>File Name</th>
+                                <th>File Type</th>
+                                <th>File Size</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var submittedHomework in Model.SubmittedHomeworks)
+                            {
+                                <tr>
+                                    <td>@submittedHomework.User.Name @submittedHomework.User.Surname</td>
+                                    <td>@submittedHomework.Name</td>
+                                    <td>@submittedHomework.Type</td>
+                                    <td>@submittedHomework.Size</td>
+                                    <td class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">menu</i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="@Url.Action("HomeworkDownloadAsync", "HomeWorks",new GetSubmittedHomeworkInput{ Id=submittedHomework.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Download")</a></li>
+
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ 

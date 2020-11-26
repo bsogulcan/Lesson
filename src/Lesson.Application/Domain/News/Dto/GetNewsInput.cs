@@ -9,5 +9,6 @@ namespace Lesson.Domain.News.Dto
 {
     public class GetNewsInput:Entity<int>
     {
+        public string Summary { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace Lesson.Domain.News
     {
         Task<NewsFullOutPut> CreateAsync(CreateNewsInput input);
         Task<NewsFullOutPut> GetAsync(GetNewsInput input);
+        List<NewsFullOutPut> Search(GetNewsInput input);
         Task<List<NewsFullOutPut>> GetListAsync();
         Task<NewsFullOutPut> UpdateAsync(UpdateNewsInput input);
         
