@@ -53,7 +53,6 @@ namespace Lesson.Domain.Homeworks
             };
 
             homework.Id = _homeworkRepository.InsertAndGetId(homework);
-            Publish_Homeworks(new UserIdentifier(null, 1));
             return ObjectMapper.Map<HomeworkFullOutPut>(homework);
         }
 

@@ -47,16 +47,16 @@ namespace Lesson.Web.Controllers
         public async Task<ActionResult> Index()
         {
             var exams = await _examApplicationService.GetListAsync();
-
-            foreach (var exam in exams)
-            {
-                exam.Approved = _studentsAnswerOfExamApplicationService.IsUserApprovedExam(
-                    new GetStudentsAnswerOfExamInput
-                    {
-                        UserId = User.Identity.GetUserId<int>(),
-                        ExaminationId = exam.Id
-                    });
-            }
+            ViewBag.UserId = User.Identity.GetUserId<int>();
+            //foreach (var exam in exams)
+            //{
+            //    exam.Approved = _studentsAnswerOfExamApplicationService.IsUserApprovedExam(
+            //        new GetStudentsAnswerOfExamInput
+            //        {
+            //            UserId = User.Identity.GetUserId<int>(),
+            //            ExaminationId = exam.Id
+            //        });
+            //}
 
             return View(exams);
         }
@@ -84,17 +84,7 @@ namespace Lesson.Web.Controllers
             };
 
             model.Lessons = await _lessonOfClassRoomApplicationService.GetListLessonsOfClassRoom(lessonOfClassRoomInput);
-
-            model.Questions = new List<Domain.Exams.ExaminationQuestion>();
-            for (int i = 0; i < 1; i++)
-            {
-                var answers = new List<Domain.Exams.ExaminationQuestionAnswer>();
-                for (int z = 0; z < 1; z++)
-                    answers.Add(new Domain.Exams.ExaminationQuestionAnswer { });
-
-                model.Questions.Add(new Domain.Exams.ExaminationQuestion { Answers = answers });
-            }
-              
+            model.Questions = new List<Domain.Exams.ExaminationQuestion>();              
             return View("CreateExam", model);
         }
 

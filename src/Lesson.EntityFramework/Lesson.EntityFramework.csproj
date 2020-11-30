@@ -293,6 +293,38 @@
     <Compile Include="Migrations\202011261456547_AddedFkOnSubmittedHomeworks.designer.cs">
       <DependentUpon>202011261456547_AddedFkOnSubmittedHomeworks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011300141545_AddedVideoContentEntity.cs" />
+    <Compile Include="Migrations\202011300141545_AddedVideoContentEntity.designer.cs">
+      <DependentUpon>202011300141545_AddedVideoContentEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011300626065_AddedVideoContentLogs.cs" />
+    <Compile Include="Migrations\202011300626065_AddedVideoContentLogs.designer.cs">
+      <DependentUpon>202011300626065_AddedVideoContentLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011300652531_test.cs" />
+    <Compile Include="Migrations\202011300652531_test.designer.cs">
+      <DependentUpon>202011300652531_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011300715004_AddedHomeworksAndVideoContentReleations.cs" />
+    <Compile Include="Migrations\202011300715004_AddedHomeworksAndVideoContentReleations.designer.cs">
+      <DependentUpon>202011300715004_AddedHomeworksAndVideoContentReleations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011300752257_AddedHomeworksAndVideoContentReleations1.cs" />
+    <Compile Include="Migrations\202011300752257_AddedHomeworksAndVideoContentReleations1.designer.cs">
+      <DependentUpon>202011300752257_AddedHomeworksAndVideoContentReleations1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011300840076_testt11.cs" />
+    <Compile Include="Migrations\202011300840076_testt11.designer.cs">
+      <DependentUpon>202011300840076_testt11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011300911070_AddedPropertyIsComplatedToVideoContentTable.cs" />
+    <Compile Include="Migrations\202011300911070_AddedPropertyIsComplatedToVideoContentTable.designer.cs">
+      <DependentUpon>202011300911070_AddedPropertyIsComplatedToVideoContentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011300945344_testt123.cs" />
+    <Compile Include="Migrations\202011300945344_testt123.designer.cs">
+      <DependentUpon>202011300945344_testt123.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedData\DefaultEditionsCreator.cs" />
@@ -362,6 +394,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011261456547_AddedFkOnSubmittedHomeworks.resx">
       <DependentUpon>202011261456547_AddedFkOnSubmittedHomeworks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300141545_AddedVideoContentEntity.resx">
+      <DependentUpon>202011300141545_AddedVideoContentEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300626065_AddedVideoContentLogs.resx">
+      <DependentUpon>202011300626065_AddedVideoContentLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300652531_test.resx">
+      <DependentUpon>202011300652531_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300715004_AddedHomeworksAndVideoContentReleations.resx">
+      <DependentUpon>202011300715004_AddedHomeworksAndVideoContentReleations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300752257_AddedHomeworksAndVideoContentReleations1.resx">
+      <DependentUpon>202011300752257_AddedHomeworksAndVideoContentReleations1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300840076_testt11.resx">
+      <DependentUpon>202011300840076_testt11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300911070_AddedPropertyIsComplatedToVideoContentTable.resx">
+      <DependentUpon>202011300911070_AddedPropertyIsComplatedToVideoContentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300945344_testt123.resx">
+      <DependentUpon>202011300945344_testt123.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

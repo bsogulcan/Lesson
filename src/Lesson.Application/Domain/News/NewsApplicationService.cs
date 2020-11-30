@@ -16,7 +16,6 @@ namespace Lesson.Domain.News
         private readonly IRepository<News> _newsRepository;
         private readonly EntityManager _entityManager;
 
-
         public NewsApplicationService(IRepository<News> newsRepository,
             EntityManager entityManager)
         {
@@ -32,7 +31,7 @@ namespace Lesson.Domain.News
                 Content = input.Content
             };
 
-            news.Id = await _newsRepository.InsertAndGetIdAsync(news);
+            news = await _newsRepository.InsertAsync(news);
             return ObjectMapper.Map<NewsFullOutPut>(news);
         }
 
@@ -64,7 +63,7 @@ namespace Lesson.Domain.News
 
         public List<NewsFullOutPut> Search(GetNewsInput input)
         {
-            var newsList = _newsRepository.GetAllIncluding().Where(x => x.Summary.Contains(input.Summary)).ToList();
+            var newsList = _newsRepository.GetAllList(x => x.Summary.Contains(input.Summary));
             var newsFullOutPutList = new List<NewsFullOutPut>();
             foreach (var news in newsList)
             {
@@ -73,9 +72,8 @@ namespace Lesson.Domain.News
                 newsFullOutPut.CreateionTime = news.CreationTime;
                 newsFullOutPutList.Add(newsFullOutPut);
             }
-
-
-            return ObjectMapper.Map<List<NewsFullOutPut>>(newsFullOutPutList);
+             
+            return newsFullOutPutList;
         }
 
         public async Task<NewsFullOutPut> UpdateAsync(UpdateNewsInput input)

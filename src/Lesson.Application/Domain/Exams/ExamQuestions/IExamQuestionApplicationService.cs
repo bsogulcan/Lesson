@@ -11,6 +11,5 @@ namespace Lesson.Domain.Exams.ExamQuestions
     public interface IExamQuestionApplicationService:IApplicationService
     {
         Task CreateAsync(CreateExamQuestionInput input);
-        Task<List<ExamQuestionFullOutPut>> GetQuestionsByExamId(GetExamQuestionInput input);
     }
 }

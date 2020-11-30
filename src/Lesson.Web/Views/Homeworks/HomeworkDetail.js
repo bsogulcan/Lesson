@@ -9,6 +9,36 @@
         // });
         const pond = FilePond.create(inputElement);
  
+
+        var options = {
+            
+        };
+        
+        var player = videojs('my-player', options, function onPlayerReady() {
+        
+            this.controlBar.progressControl.disable()
+
+            this.on('ended', function () { 
+                abp.services.app.videoContentLog.create({
+                    Log:"Video Completed",
+                    VideoContentId:$('#my-player').attr("videoId"),
+                    IsCompleted:true
+                });
+                console.log('Video Finished');
+            });
+        
+            var lastTime = 0; 
+            this.on("timeupdate", function (event) {
+                var currentTime = this.currentTime();
+                if (currentTime - lastTime > 5) {
+                    console.log("Video " + lastTime + " Saniyesinden" + currentTime + " Saniyesine atladı.");
+                }
+                lastTime = this.currentTime();
+            });
+        });
+
+
+
         $('#mypond').on('FilePond:addfile', function(e) {
             console.log('file added event', e);
         });

@@ -3411,6 +3411,64 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\VideoJs\dist\alt\video-js-cdn.css" />
+    <Content Include="Scripts\VideoJs\dist\alt\video-js-cdn.min.css" />
+    <Content Include="Scripts\VideoJs\dist\alt\video.core.js" />
+    <Content Include="Scripts\VideoJs\dist\alt\video.core.min.js" />
+    <Content Include="Scripts\VideoJs\dist\alt\video.core.novtt.js" />
+    <Content Include="Scripts\VideoJs\dist\alt\video.core.novtt.min.js" />
+    <Content Include="Scripts\VideoJs\dist\alt\video.novtt.js" />
+    <Content Include="Scripts\VideoJs\dist\alt\video.novtt.min.js" />
+    <Content Include="Scripts\VideoJs\dist\examples\elephantsdream\index.html" />
+    <Content Include="Scripts\VideoJs\dist\examples\index.html" />
+    <Content Include="Scripts\VideoJs\dist\examples\simple-embed\index.html" />
+    <Content Include="Scripts\VideoJs\dist\font\VideoJS.svg" />
+    <Content Include="Scripts\VideoJs\dist\lang\ar.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\ba.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\bg.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\ca.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\cs.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\cy.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\da.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\de.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\el.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\en.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\es.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\fa.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\fi.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\fr.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\gd.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\gl.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\he.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\hr.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\hu.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\it.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\ja.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\ko.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\nb.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\nl.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\nn.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\oc.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\pl.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\pt-BR.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\pt-PT.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\ru.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\sk.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\sr.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\sv.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\tr.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\uk.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\vi.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\zh-CN.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\zh-Hans.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\zh-Hant.js" />
+    <Content Include="Scripts\VideoJs\dist\lang\zh-TW.js" />
+    <Content Include="Scripts\VideoJs\dist\video-js.css" />
+    <Content Include="Scripts\VideoJs\dist\video-js.min.css" />
+    <Content Include="Scripts\VideoJs\dist\video.cjs.js" />
+    <Content Include="Scripts\VideoJs\dist\video.es.js" />
+    <Content Include="Scripts\VideoJs\dist\video.js" />
+    <Content Include="Scripts\VideoJs\dist\video.min.js" />
     <Content Include="Views\Account\Login.css">
       <DependentUpon>Login.less</DependentUpon>
     </Content>
@@ -3455,6 +3513,8 @@
     <Content Include="Views\Tenants\_EditTenantModal.js" />
     <Content Include="Views\Users\Index.js" />
     <Content Include="Views\Users\_EditUserModal.js" />
+    <Content Include="Views\VideoContent\CreateVideoContent.js" />
+    <Content Include="Views\VideoContent\WatchContent.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3483,6 +3543,7 @@
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\VideoContentController.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Models\Account\TenantChangeModalViewModel.cs" />
     <Compile Include="Models\Account\TenantChangeViewModel.cs" />
@@ -3661,6 +3722,59 @@
     <Content Include="Views\News\DetailNews.cshtml" />
     <Content Include="Views\News\SearchNews.cshtml" />
     <Content Include="Views\Homeworks\SubmittedHomeworks.cshtml" />
+    <Content Include="Views\VideoContent\Index.cshtml" />
+    <Content Include="Views\VideoContent\CreateVideoContent.cshtml" />
+    <Content Include="Views\VideoContent\WatchContent.cshtml" />
+    <Content Include="Scripts\VideoJs\dist\examples\elephantsdream\captions.ar.vtt" />
+    <Content Include="Scripts\VideoJs\dist\examples\elephantsdream\captions.en.vtt" />
+    <Content Include="Scripts\VideoJs\dist\examples\elephantsdream\captions.ja.vtt" />
+    <Content Include="Scripts\VideoJs\dist\examples\elephantsdream\captions.ru.vtt" />
+    <Content Include="Scripts\VideoJs\dist\examples\elephantsdream\captions.sv.vtt" />
+    <Content Include="Scripts\VideoJs\dist\examples\elephantsdream\chapters.en.vtt" />
+    <Content Include="Scripts\VideoJs\dist\examples\elephantsdream\descriptions.en.vtt" />
+    <Content Include="Scripts\VideoJs\dist\examples\shared\example-captions.vtt" />
+    <Content Include="Scripts\VideoJs\dist\font\VideoJS.ttf" />
+    <Content Include="Scripts\VideoJs\dist\font\VideoJS.woff" />
+    <Content Include="Scripts\VideoJs\dist\lang\ar.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\ba.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\bg.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\ca.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\cs.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\cy.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\da.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\de.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\el.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\en.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\es.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\fa.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\fi.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\fr.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\gd.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\gl.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\he.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\hr.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\hu.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\it.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\ja.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\ko.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\nb.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\nl.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\nn.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\oc.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\pl.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\pt-BR.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\pt-PT.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\ru.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\sk.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\sr.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\sv.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\tr.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\uk.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\vi.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\zh-CN.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\zh-Hans.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\zh-Hant.json" />
+    <Content Include="Scripts\VideoJs\dist\lang\zh-TW.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3688,6 +3802,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\VideoContents\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -1,0 +1,83 @@
+﻿@model List<Lesson.Domain.VideoContent.Dto.VideoContentFullOutPut>
+@using Abp.Web.Mvc.Extensions
+@using Lesson.Domain.VideoContent.Dto;
+@using Lesson.Authorization;
+@{
+    ViewBag.Title = L("VideoContents");
+    ViewBag.ActiveMenu = PageNames.VideoContents;
+}
+@section scripts
+{
+    @Html.IncludeScript("~/Views/Homeworks/Index.js")
+
+    @Html.IncludeStyle("~/css/dataTables.bootstrap.css")
+    @Html.IncludeScript("~/Scripts/jqueryDatatables/jquery.dataTables.js")
+    @Html.IncludeScript("~/Scripts/jqueryDatatables/dataTables.bootstrap.js")
+
+    <script>
+
+        (function () {
+            $(function () {
+                $('#tblHomeworks').DataTable({
+                });
+
+            })
+        })();
+    </script>
+
+}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("VideoContents")
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            @if (IsGranted(PermissionNames.Pages_HomeWorks_Create))
+                            {
+                                <li><a href="@Url.Action("CreateVideoContent", "VideoContent")" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("CreateVideoContent")</a></li>
+                            }
+                            <li><a id="RefreshButton" href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">refresh</i>Refresh</a></li>
+                        </ul>
+
+                    </li>
+                </ul>
+            </div>
+
+            <div class="body">
+                <div class="table">
+                    <table id="tblHomeworks" role="grid" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                        <thead>
+                            <tr>
+                                <th width="95%">Summary</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var videoContent in Model)
+                            {
+                                <tr>
+                                    <td>@videoContent.Summary</td>
+                                    <td class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">menu</i>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="@Url.Action("WatchContent", "VideoContent",new GetVideoContentInput{ Id=videoContent.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Details")</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,18 +16,15 @@ namespace Lesson.Domain.Exams.Exam
     {
         private readonly IRepository<Examination> _examRepository;
         private readonly IEntityManager _entityManager;
-        private readonly IExamQuestionApplicationService _examQuestionApplicationService;
         public ExamApplicationService(IRepository<Examination> examRepository,
-            IEntityManager entityManager,
-            IExamQuestionApplicationService examQuestionApplicationService)
+            IEntityManager entityManager)
         {
             _examRepository = examRepository;
             _entityManager = entityManager;
-            _examQuestionApplicationService = examQuestionApplicationService;
         }
-        public async Task CreateAsync(CreateExamInput input)
+        public async Task<ExaminationsFullOutPut> CreateAsync(CreateExamInput input)
         {
-            var exam = new Examination
+            var examination = new Examination
             {
                 Name = input.Name,
                 StartDate = input.StartDate,
@@ -39,13 +36,13 @@ namespace Lesson.Domain.Exams.Exam
                 Questions = input.Questions
             };
 
-            exam.Id = await _examRepository.InsertAndGetIdAsync(exam);
+            examination = await _examRepository.InsertAsync(examination);
+            return ObjectMapper.Map<ExaminationsFullOutPut>(examination);
         }
 
         public async Task<ExaminationsFullOutPut> GetAsync(GetExaminationInput input)
         {
             var exam = await _examRepository.GetAsync(input.Id);
-            exam.StudentsAnswers=exam.StudentsAnswers.Where(x => x.UserId == AbpSession.UserId).ToList();
             return ObjectMapper.Map<ExaminationsFullOutPut>(exam);
         }
 

@@ -68,7 +68,7 @@
                 var targetDiv = document.getElementsByClassName("dropdown-menu open")[1].getElementsByClassName("dropdown-menu inner")[0];;
                 targetDiv.innerHTML='';
                 $("#lessonsDropDown").innerHTML='';
-
+                document.querySelector("#lessonsDropDown").innerHTML='';
                 for(var index=0;index<content.length;index++){
                     
                    $("#lessonsDropDown").append("<option value='"+content[index]["lesson"].id+"'>"+content[index]["lesson"].name+"</option>");

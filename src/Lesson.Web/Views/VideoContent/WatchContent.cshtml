@@ -1,0 +1,44 @@
+﻿@model Lesson.Domain.VideoContent.Dto.VideoContentFullOutPut
+@using Abp.Web.Mvc.Extensions
+
+@section scripts
+{
+    @Html.IncludeScript("~/Scripts/VideoJs/dist/video.min.js")
+    @Html.IncludeScript("~/Views/VideoContent/WatchContent.js")
+    @Html.IncludeStyle("~/Scripts/VideoJs/dist/video-js.min.css")
+
+}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+        <div class="header">
+            <h2>
+                @Model.Summary
+                <small></small>
+            </h2>
+        </div>
+        <div class="body">
+            <form name="InsertHomeWork" class="form-horizontal">
+                <div class="row clearfix">
+                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                        <video id="my-player" class="video-js" height="600" width="700" controls preload="auto">
+                            <source src="@Url.Action("GetVideoContentAsync","VideoContent",new { id = Model.Id })" type="video/mp4"> 
+
+                            @*<source src="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4" type="video/mp4">*@
+
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a
+                                web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">
+                                    supports HTML5 video
+                                </a>
+                            </p>
+                        </video>
+                        
+                        @*<video id="my-player" class="video-js" height="600" width="700" src="@Url.Action("GetVideoContentAsync","VideoContent",new { id = Model.Id })" type="video/mp4" controls preload="auto">
+                        </video>*@
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

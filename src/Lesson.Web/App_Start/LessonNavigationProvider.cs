@@ -86,6 +86,14 @@ namespace Lesson.Web
                         requiresAuthentication: true,
                         permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_RollCalls)));
             #endregion
+            #region Roll Call
+            context.Manager.MainMenu.AddItem(new MenuItemDefinition(PageNames.VideoContents,
+                        L("VideoContents"),
+                        url: "VideoContent",
+                        icon: "subscriptions",
+                        requiresAuthentication: true,
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_VideoContents)));
+            #endregion
         }
 
         private static ILocalizableString L(string name)

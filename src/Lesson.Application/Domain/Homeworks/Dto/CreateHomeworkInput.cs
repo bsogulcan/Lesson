@@ -1,6 +1,7 @@
 ﻿using Lesson.Authorization.Users;
 using Lesson.Classes;
 using Lesson.Classes.Dto;
+using Lesson.Domain.VideoContent.Dto;
 using Lesson.Users.Dto;
 using System;
 using System.Collections.Generic;

@@ -29,9 +29,6 @@
         (function () {
             $(function () {
                 $('#tblExams').DataTable({
-                    "language": {
-                        url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
-                    }
                 });
 
             })
@@ -91,13 +88,15 @@
                                         <i class="material-icons">menu</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        @if (exam.Approved)
+
+
+                                        @if (exam.StudentsAnswers.Any(x => x.User.Id == ViewBag.UserId))
                                         {
-                                            <li><a href="@Url.Action("ResultOfExams", "Exams",new GetExaminationInput { Id=exam.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Result")</a></li>
+                                        <li><a href="@Url.Action("ResultOfExams", "Exams",new GetExaminationInput { Id=exam.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("Result")</a></li>
                                         }
                                         else if (DateTime.Now > exam.StartDate && DateTime.Now < exam.EndDate)
                                         {
-                                            <li><a href="@Url.Action("DetailExam", "Exams",new GetExaminationInput { Id=exam.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("StartExam")</a></li>
+                                        <li><a href="@Url.Action("DetailExam", "Exams",new GetExaminationInput { Id=exam.Id})" class="waves-effect waves-block class_room_students"><i class="material-icons">accessibility</i>@L("StartExam")</a></li>
                                         }
                                     </ul>
                                 </td>

@@ -28,11 +28,5 @@ namespace Lesson.Domain.Exams.ExamQuestion
 
             examQuestion.Id = await _examQuestionRepository.InsertAndGetIdAsync(examQuestion);
         }
-
-        public Task<List<ExamQuestionFullOutPut>> GetQuestionsByExamId(GetExamQuestionInput input)
-        {
-            //var examQuestions = _examQuestionRepository.GetAll().Where(x=>x.);
-            return null;
-        }
     }
 }

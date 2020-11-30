@@ -79,7 +79,43 @@
 
 	<text name="Categories">Kategoriler</text>
 	<text name="CreateNewCategory">Yeni Kategori Oluştur</text>
-	<text name="CategoryName">Kategori Adı</text>
+	<text name="CategoryName">Kategori Adı</text> 
+
+  <text name="ClassRoomLevel">Sınıf Seviyesi</text>
+  <text name="ClassRoomBranch">Sınıf Şubesi</text>
+  <text name="ClassRoomDescription">Sınıf Açıklaması</text>
+  <text name="EditClassRoom">Sınıf Bilgilerini Güncelle</text>
+  <text name="ClassRooms">Sınıf Listesi</text>
+  <text name="ClassRoom">Sınıf</text>
+  <text name="CreateNewClassRoom">Yenin Sınıf Oluştur</text>  
+  <text name="StudentList">Öğrenciler</text>  
+  <text name="AddNewStudentToClassRoom">Yeni Öğrenci Ekle</text>
+  <text name="Lessons">Dersler</text>
+  <text name="Lesson">Ders</text>
+  <text name="LessonList">Ders Listesi</text>
+  <text name="Time">Süre</text>
+  <text name="Definitions">Tanımlar</text>
+  <text name="MyLessons">Derslerim</text>
+  <text name="MyHomeWorks">Ödevlerim</text>
+  <text name="MyExams">Sınavlarım</text>
+  <text name="Exams">Sınavlar</text>
+  <text name="ExamResults">Sınav Sonuçlarım</text>
+  <text name="ExamResult">Sınav Sonucu</text>
+  <text name="StartExam">Sınavı Başlat</text>
+  <text name="CreateExam">Sınav Oluştur</text>
+  <text name="Result">Sonuç</text>
+  <text name="RollCall">Yoklama</text>
+  <text name="RollCalls">Yoklamalar</text>
+  <text name="Students">Öğrenciler</text>
+  <text name="Homeworks">Ödevler</text>
+  <text name="CreateHomework">Ödev Oluştur</text>
+  <text name="Details">Detaylar</text>
+  <text name="CorrectAnswerCount">Doğru Cevap Sayısı</text>
+  <text name="WrongAnswerCount">Yanlış Cevap Sayısı</text>
+  <text name="News">Duyurular</text>
+  <text name="CreateNews">Duyuru Ekle</text>
+  <text name="SubmittedHomeworks">Yüklenen Ödevler</text>
+  <text name="CreateRollCall">Yoklama Oluştur</text>
 
   </texts>
 </localizationDictionary>
