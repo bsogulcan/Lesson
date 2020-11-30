@@ -33,29 +33,29 @@ namespace Lesson.Domain.StudentsAnswersOfExam
             _examinationQuestionAnswerRepository = examinationQuestionAnswerRepository;
         }
 
-        public async Task CreateAsync(CreateStudentsAnswerOfExamInput input)
+        public async Task<StudentsAnswerOfExamFullOutPut> CreateAsync(CreateStudentsAnswerOfExamInput input)
         {
             var studentsAnswerOfExam = new Lesson.Domain.StudentsAnswerOfExam.StudentsAnswerOfExam
             {
-                User = await _userManager.GetUserByIdAsync(input.UserId),
+                User = await _userManager.GetUserByIdAsync(AbpSession.UserId.Value),
                 Examination = await _examinationRepository.GetAsync(input.ExaminationId),
                 ExaminationQuestion = await _examinationQuestionRepository.GetAsync(input.ExaminationQuestionId),
                 ExaminationQuestionAnswer = await _examinationQuestionAnswerRepository.GetAsync(input.ExaminationQuestionAnswerId)
             };
 
-            studentsAnswerOfExam.Id = await _studentsAnswerOfExamRepository.InsertAndGetIdAsync(studentsAnswerOfExam);
+            studentsAnswerOfExam = await _studentsAnswerOfExamRepository.InsertAsync(studentsAnswerOfExam);
+            return ObjectMapper.Map<StudentsAnswerOfExamFullOutPut>(studentsAnswerOfExam);
         }
 
         public List<StudentsAnswerOfExamFullOutPut> GetAnswersByExam(GetStudentsAnswerOfExamInput input)
         {
-            var studentsAnswersOfExam = _studentsAnswerOfExamRepository.GetAllIncluding()
-                .Where(x => x.UserId == input.UserId && x.ExaminationId== input.ExaminationId).ToList();
+            var studentsAnswersOfExam = _studentsAnswerOfExamRepository.GetAllList(x => x.UserId == input.UserId && x.ExaminationId == input.ExaminationId);
             return ObjectMapper.Map<List<StudentsAnswerOfExamFullOutPut>>(studentsAnswersOfExam);
         }
 
         public bool IsUserApprovedExam(GetStudentsAnswerOfExamInput input)
-        { 
-            return _studentsAnswerOfExamRepository.GetAllList().Where(x => x.User.Id == input.UserId && x.ExaminationId == input.ExaminationId).ToList().Count > 0 ? true : false;
+        {
+            return _studentsAnswerOfExamRepository.Count(x => x.User.Id == input.UserId && x.ExaminationId == input.ExaminationId) > 0 ? true : false;
         }
     }
 }

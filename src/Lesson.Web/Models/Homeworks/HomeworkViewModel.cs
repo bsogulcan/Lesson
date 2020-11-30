@@ -1,6 +1,7 @@
 ﻿using Lesson.Authorization.Users;
 using Lesson.Classes;
 using Lesson.Classes.Dto;
+using Lesson.Domain.VideoContent.Dto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,6 +19,7 @@ namespace Lesson.Web.Models.Homeworks
         public int ClassRoomId { get; set; }
         public List<ClassRoomFullOutPut> ClassRooms { get; set; }
         //public User User { get; set; }
+        public VideoContentFullOutPut VideoContent{ get; set; }
         public DateTime Deadline { get; set; }
 
     }

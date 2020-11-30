@@ -10,6 +10,6 @@ namespace Lesson.Domain.Exams.ExamQuestions.Dto
     public class ExamQuestionFullOutPut:Entity<int>
     {
         public string Question { get; set; }
-        public List<ExaminationQuestionAnswer> Answers { get; set; }
+        public virtual List<ExaminationQuestionAnswer> Answers { get; set; }
     }
 }

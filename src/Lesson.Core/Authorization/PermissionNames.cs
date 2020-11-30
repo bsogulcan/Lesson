@@ -27,6 +27,10 @@
         #region RollCalls
         public const string Pages_RollCalls = "Pages.RollCalls";
         #endregion
+        #region VideoContents
+        public const string Pages_VideoContents= "Pages.VideoContents";
+        public const string Pages_VideoContents_Create= "Pages.VideoContents_Create";
+        #endregion
 
         #region ClassRoom
         public const string ClassRoom = "ClassRoom";

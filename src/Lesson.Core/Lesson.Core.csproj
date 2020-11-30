@@ -232,6 +232,8 @@
     <Compile Include="Domain\StudentsAnswersOfExam\StudentsAnswerOfExam.cs" />
     <Compile Include="Domain\StudentsOfClassRoom\StudentOfClassRoom.cs" />
     <Compile Include="Domain\SubmittedHomeworks\SubmittedHomeworks.cs" />
+    <Compile Include="Domain\VideoContent\VideoContent.cs" />
+    <Compile Include="Domain\VideoContent\VideoContentLog.cs" />
     <Compile Include="LessonConsts.cs" />
     <Compile Include="LessonCoreModule.cs" />
     <Compile Include="AppVersionHelper.cs" />

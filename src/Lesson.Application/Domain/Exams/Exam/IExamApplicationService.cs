@@ -10,7 +10,7 @@ namespace Lesson.Domain.Exams.Exam
 {
     public interface IExamApplicationService:IApplicationService
     {
-        Task CreateAsync(CreateExamInput input);
+        Task<ExaminationsFullOutPut> CreateAsync(CreateExamInput input);
         Task<List<ExaminationsFullOutPut>> GetListAsync();
         Task<ExaminationsFullOutPut> GetAsync(GetExaminationInput input);
     }

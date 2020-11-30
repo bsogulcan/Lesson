@@ -78,42 +78,40 @@
     <text name="Delete">Delete</text>
     <text name="Categories">Categories</text>
 
-   <text name="ClassRoomLevel">Sınıf Seviyesi</text>
-   <text name="ClassRoomBranch">Sınıf Şubesi</text>
-   <text name="ClassRoomDescription">Sınıf Açıklaması</text>
-   <text name="EditClassRoom">Sınıf Bilgilerini Güncelle</text>
-   <text name="ClassRooms">Sınıf Listesi</text>
-   <text name="ClassRoom">Sınıf</text>
-   <text name="CreateNewClassRoom">Yenin Sınıf Oluştur</text>  
-   <text name="StudentList">Öğrenciler</text>  
-   <text name="AddNewStudentToClassRoom">Yeni Öğrenci Ekle</text>
-   <text name="Lessons">Dersler</text>
-   <text name="Lesson">Ders</text>
-   <text name="LessonList">Ders Listesi</text>
-
-   <text name="Time">Süre</text>
-    
-   <text name="Definitions">Tanımlar</text>
-   <text name="MyLessons">Derslerim</text>
-   <text name="MyHomeWorks">Ödevlerim</text>
-   <text name="MyExams">Sınavlarım</text>
-   <text name="Exams">Sınavlar</text>
-   <text name="ExamResults">Sınav Sonuçlarım</text>
-   <text name="ExamResult">Sınav Sonucu</text>
-   <text name="StartExam">Sınavı Başlat</text>
-   <text name="CreateExam">Sınav Oluştur</text>
-   <text name="Result">Sonuç</text>
-   <text name="RollCall">Yoklama</text>
-   <text name="RollCalls">Yoklamalar</text>
-   <text name="Students">Öğrenciler</text>
-   <text name="Homeworks">Ödevler</text>
-   <text name="CreateHomework">Ödev Oluştur</text>
-   <text name="Details">Detaylar</text>
-   <text name="CorrectAnswerCount">Doğru Cevap Sayısı</text>
-   <text name="WrongAnswerCount">Yanlış Cevap Sayısı</text>
-   
-   <text name="News">Duyurular</text>
-   <text name="CreateNews">Duyuru Ekle</text>
-   
+   <text name="ClassRoomLevel">Classroom Level</text>
+   <text name="ClassRoomBranch">Classroom Branch</text>
+   <text name="ClassRoomDescription">Classroom Description</text>
+   <text name="EditClassRoom">Edit Classroom</text>
+   <text name="ClassRooms">Classrooms</text>
+   <text name="ClassRoom">Classroom</text>
+   <text name="CreateNewClassRoom">Create Classroom</text>  
+   <text name="StudentList">Students</text>  
+   <text name="AddNewStudentToClassRoom">Add new student to the class</text>
+   <text name="Lessons">Lessons</text>
+   <text name="Lesson">Lesson</text>
+   <text name="LessonList">Lesson List</text>
+   <text name="Time">Time</text>
+   <text name="Definitions">Definitions</text>
+   <text name="MyLessons">My Lessons</text>
+   <text name="MyHomeWorks">My Homeworks</text>
+   <text name="MyExams">My Exams</text>
+   <text name="Exams">Exams</text>
+   <text name="ExamResults">Result Of Exams</text>
+   <text name="ExamResult">Result of Exam</text>
+   <text name="StartExam">Start the Exam</text>
+   <text name="CreateExam">Create Exam</text>
+   <text name="Result">Result</text>
+   <text name="RollCall">Roll Call</text>
+   <text name="RollCalls">Roll Calls</text>
+   <text name="Students">Students</text>
+   <text name="Homeworks">Homeworks</text>
+   <text name="CreateHomework">Create Homework</text>
+   <text name="Details">Details</text>
+   <text name="CorrectAnswerCount">Correct answer count</text>
+   <text name="WrongAnswerCount">Wrong answer count</text>
+   <text name="News">News</text>
+   <text name="CreateNews">Create News</text>
+   <text name="SubmittedHomeworks">Submitted Homeworks</text>
+  <text name="CreateRollCall">Create a Roll Call</text>
   </texts>
 </localizationDictionary>

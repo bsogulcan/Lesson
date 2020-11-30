@@ -7,6 +7,10 @@
 }
 @section scripts
 {
+    @Html.IncludeScript("~/Scripts/filepond/dist/filepond.js")
+    @Html.IncludeScript("~/Scripts/filepond/dist/filepond.jquery.js")
+    @Html.IncludeScript("~/Scripts/filepond/dist/filepond-plugin-file-encode.js")
+    @Html.IncludeStyle("~/Scripts/filepond/dist/filepond.css")
     @Html.IncludeScript("~/Views/Homeworks/CreateHomework.js")
 }
 <link href="~/dist/css/datepicker.css" rel="stylesheet">
@@ -37,23 +41,23 @@
         </div>
         <div class="body">
             <form name="InsertHomeWork" class="form-horizontal">
-                  
+
                 <div class="row clearfix">
                     <div class="col-sm-4">
                         <div class="form-group form-float form-group">
-                            @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new {  @class = "form-control",id= "classRoomDropDown" })
+                            @Html.DropDownListFor(model => model.ClassRoomId, new SelectList(Model.ClassRooms, "Id", "FullClassName"), new { @class = "form-control", id = "classRoomDropDown" })
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group form-float form-group">
-                            @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control" ,id= "lessonsDropDown" })
+                            @Html.DropDownListFor(model => model.LessonId, new SelectList(Model.Lessons, "Id", "Name"), new { @class = "form-control", id = "lessonsDropDown" })
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <div class="form-line">
                                 <input type='text' id="Deadline" class='datepicker-here form-control' value="@Model.Deadline" data-language='en' />
-                                
+
                             </div>
                         </div>
 
@@ -70,8 +74,11 @@
                                 @*<label class="form-label">Summary</label>*@
                             </div>
                             <div class="form-line">
-                                @Html.TextArea("Description", Model.Description, new { @class = "form-control no-resize", placeholder = "Description" , rows = "8" })
+                                @Html.TextArea("Description", Model.Description, new { @class = "form-control no-resize", placeholder = "Description", rows = "8" })
                                 @*<textarea rows="4" class="form-control no-resize" placeholder="Homework Description"></textarea>*@
+                            </div>
+                            <div class="form">
+                                <input class="filepond" id="mypond" type="file">
                             </div>
                         </div>
                     </div>
@@ -79,7 +86,7 @@
 
                 <div class="row clearfix">
                     <div class="col-sm-12">
-                        <button type="submit"  class="btn btn-primary m-t-15 waves-effect">Create Homework</button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Create Homework</button>
                     </div>
                 </div>
 

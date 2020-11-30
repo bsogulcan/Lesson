@@ -15,6 +15,7 @@ using Lesson.Domain.RollCallsDetail;
 using Lesson.Domain.StudentOfClassRoom;
 using Lesson.Domain.StudentsAnswerOfExam;
 using Lesson.Domain.SubmittedHomeworks;
+using Lesson.Domain.VideoContent;
 using Lesson.MultiTenancy;
 
 namespace Lesson.EntityFramework
@@ -36,11 +37,12 @@ namespace Lesson.EntityFramework
         public DbSet<StudentsAnswerOfExam> StudentsAnswerOfExams { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<SubmittedHomeworks> SubmittedHomeworks { get; set; }
+        public DbSet<VideoContent> VideoContents { get; set; }
+        public DbSet<VideoContentLog> VideoContentLogs{ get; set; }
 
         public LessonDbContext()
             : base("Default")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
 
         /* NOTE:

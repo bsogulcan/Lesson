@@ -301,6 +301,16 @@
     <Compile Include="Domain\SubmittedHomeworks\Dto\SubmittedHomeworksFullOutPut.cs" />
     <Compile Include="Domain\SubmittedHomeworks\ISubmittedHomeworksApplicationService.cs" />
     <Compile Include="Domain\SubmittedHomeworks\SubmittedHomeworksApplicationService.cs" />
+    <Compile Include="Domain\VideoContentLog\Dto\CreateVideoContentLogInput.cs" />
+    <Compile Include="Domain\VideoContentLog\Dto\GetVideoContenLogInput.cs" />
+    <Compile Include="Domain\VideoContentLog\Dto\VideoContentLogFullOutPut.cs" />
+    <Compile Include="Domain\VideoContentLog\IVideoContentLogApplicationService.cs" />
+    <Compile Include="Domain\VideoContentLog\VideoContentLogApplicationService.cs" />
+    <Compile Include="Domain\VideoContent\Dto\CreateVideoContentInput.cs" />
+    <Compile Include="Domain\VideoContent\Dto\GetVideoContentInput.cs" />
+    <Compile Include="Domain\VideoContent\Dto\VideoContentFullOutPut.cs" />
+    <Compile Include="Domain\VideoContent\IVideoContentApplicationService.cs" />
+    <Compile Include="Domain\VideoContent\VideoContentApplicationService.cs" />
     <Compile Include="LessonApplicationModule.cs" />
     <Compile Include="LessonAppServiceBase.cs" />
     <Compile Include="Authorization\Accounts\AccountAppService.cs" />

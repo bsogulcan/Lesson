@@ -1,17 +1,43 @@
 ﻿(function () {
     $(function () {  
         var _$form = $('form[name=InsertHomeWork]');
+        FilePond.registerPlugin(FilePondPluginFileEncode);
+        const inputElement = document.querySelector('input[type="file"]');
+     
+        const pond = FilePond.create(inputElement);
+ 
+        $('#mypond').on('FilePond:addfile', function(e) {
+            console.log('file added event', e);
+        });
+
 
         _$form.find('button[type="submit"]').click(function (e) {
             e.preventDefault();
             var formModel = _$form.serializeFormToObject();
 
+            var pondEntity=pond.getFiles(); 
+
+            if (pondEntity.length>0){
+                var uploadedFileBase64=pondEntity[0].getFileEncodeBase64String();
+            
+                var videoContent={
+                    Summary:pondEntity[0].filename,
+                    VideoName:pondEntity[0].fileType,
+                    VideoSize:pondEntity[0].fileSize,
+                    FileBase64:uploadedFileBase64
+                } 
+            }else{
+                var videoContent={
+
+                }
+            }
             var homeWork={
                 Summary:document.getElementById("Summary").value,
                 Description:document.getElementById("Description").value,
                 LessonId:document.getElementById("lessonsDropDown").value,
                 ClassRoomId:document.getElementById("classRoomDropDown").value,
-                Deadline:document.getElementById("Deadline").value
+                Deadline:document.getElementById("Deadline").value,
+                VideoContent:videoContent
             };
 
             console.log(homeWork);

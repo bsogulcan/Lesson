@@ -19,6 +19,7 @@ namespace Lesson.Domain.Homeworks.Dto
         public User User { get; set; }
         public DateTime Deadline { get; set; }
         public List<SubmittedHomeworksFullOutPut> SubmittedHomeworks { get; set; }
+        public VideoContent.Dto.VideoContentFullOutPut VideoContent { get; set; }
 
     }
 }

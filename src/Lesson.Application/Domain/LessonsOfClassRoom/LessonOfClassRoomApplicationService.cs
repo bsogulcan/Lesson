@@ -58,13 +58,6 @@ namespace Lesson.Domain.LessonsOfClassRoom
             return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonsOfClassRoom);
         }
 
-        //public async Task<List<LessonOfClassRoomFullOutPut>> GetListLessonsOfClassRoom1(GetLessonOfClassRoomInput input)
-        //{
-        //    var lessonsOfClassRoom = await _lessonOfClassRoom.GetAllListAsync();
-        //    lessonsOfClassRoom = lessonsOfClassRoom.Where(x => x.ClassRoom.Id == input.ClassRoomId).ToList();
-        //    return ObjectMapper.Map<List<LessonOfClassRoomFullOutPut>>(lessonsOfClassRoom);
-        //}
-
         public async Task<List<LessonFullOutPut>> GetListLessonsOfClassRoom(GetLessonOfClassRoomInput input)
         {
             List<LessonFullOutPut> lessonOfClassFullOutPut = new List<LessonFullOutPut>();

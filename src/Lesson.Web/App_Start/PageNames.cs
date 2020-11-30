@@ -15,5 +15,6 @@ namespace Lesson.Web
         public const string Homeworks = "Homeworks";
         public const string Exams = "Exams";
         public const string News = "News";
+        public const string VideoContents = "VideoContents";
     }
 }

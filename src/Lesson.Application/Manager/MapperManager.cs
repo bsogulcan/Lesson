@@ -22,6 +22,9 @@ using Lesson.Domain.StudentsAnswersOfExam.Dto;
 using Lesson.Domain.StudentsOfClassRoom.Dto;
 using Lesson.Domain.SubmittedHomeworks;
 using Lesson.Domain.SubmittedHomeworks.Dto;
+using Lesson.Domain.VideoContent;
+using Lesson.Domain.VideoContent.Dto;
+using Lesson.Domain.VideoContentLog.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,7 +100,13 @@ namespace Lesson.Manager
             
             // SubmittedHomework
             cfg.CreateMap<SubmittedHomeworks, SubmittedHomeworksFullOutPut>(); 
+           
+            // VideoContent
+            cfg.CreateMap<VideoContent, VideoContentFullOutPut>(); 
+            cfg.CreateMap<VideoContent, CreateVideoContentInput>();
 
+            // VideoContentLog
+            cfg.CreateMap<VideoContentLog, VideoContentLogFullOutPut>();
         } 
     }
 }

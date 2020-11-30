@@ -21,6 +21,8 @@ namespace Lesson.Authorization
             context.CreatePermission(PermissionNames.Pages_Exams, L(PermissionNames.Pages_Exams));
             context.CreatePermission(PermissionNames.Pages_Exams_Create, L(PermissionNames.Pages_Exams_Create));
             context.CreatePermission(PermissionNames.Pages_RollCalls, L(PermissionNames.Pages_RollCalls));
+            context.CreatePermission(PermissionNames.Pages_VideoContents, L(PermissionNames.Pages_VideoContents));
+            context.CreatePermission(PermissionNames.Pages_VideoContents_Create, L(PermissionNames.Pages_VideoContents_Create));
 
             //ClassRoom
             //context.CreatePermission(PermissionNames.ClassRoom, L("Permission_ClassRoom"));
